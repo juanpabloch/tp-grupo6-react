@@ -20,9 +20,9 @@ export default function Libros() {
   }, []);
 
   // pagina actual
-  const indiceLibroUltimo = pagActual * librosPorPagina;
-  const indiceLibroPrimero = indiceLibroUltimo - librosPorPagina;
-  const librosActuales = libros.slice(indiceLibroPrimero, indiceLibroUltimo);
+  const indiceUltimoLibro = pagActual * librosPorPagina;
+  const indicePrimerLibro = indiceUltimoLibro - librosPorPagina;
+  const librosActuales = libros.slice(indicePrimerLibro, indiceUltimoLibro);
   // cambio de pagina
   const paginacion = (numeroLibro) => setPagActual(numeroLibro);
 
