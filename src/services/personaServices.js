@@ -1,9 +1,9 @@
 
 import axios from 'axios';
-const url ="https://tp-grupo6-api.herokuapp.com/libro";
+const url ="https://tp-grupo6-api.herokuapp.com/persona";
     
 
-export const getLibros = async () => {
+export const getPersonas = async () => {
     
         const respuesta = await axios.get(
           url
