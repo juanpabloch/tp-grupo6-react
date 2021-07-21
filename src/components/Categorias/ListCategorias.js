@@ -1,9 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-export default function ListCategorias({ categoria, cargando }) {
-  if (cargando) {
-    return <h2>Cargando...</h2>;
-  }
+export default function ListCategorias({ categoria }) {
+
   return (
     <div className="row">
       {categoria.map((cate) => (

@@ -1,47 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ListPersona from "./ListPersona";
 import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
-import { getPersonas } from "../../services/personaServices";
+import { useSelector } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 export default function Personas() {
-  const [personas, setPersona] = useState([]);
-  const [cargando, setCargando] = useState(false);
   const [pagActual, setPagActual] = useState(0);
   const [buscarPor, setBuscarPor] = useState("");
 
-  useEffect(() => {
-    const fetchPersona = async () => {
-      setCargando(true);
-      const respuesta = await getPersonas();
-      setPersona([...respuesta]);
-      setCargando(false);
-    };
-    fetchPersona();
-  }, []);
+
+  const listado = useSelector((state) => state.personas.listado);
+  
+  const CANTIDAD_LIBROS_PAGINAS = 3;
+  
 
   const filtradoPersonaInicio = () => {
     if (buscarPor.length === 0) {
-      return personas.slice(pagActual, pagActual + 5);
+      return listado.slice(pagActual, pagActual + CANTIDAD_LIBROS_PAGINAS);
     }
-    const filtrado = personas.filter((persona) => persona.nombre.includes(buscarPor));
-    return filtrado.slice(pagActual, pagActual + 5);
+    const filtrado = listado.filter((persona) => persona.nombre.includes(buscarPor));
+    return filtrado.slice(pagActual, pagActual + CANTIDAD_LIBROS_PAGINAS);
   };
 
   const enCambioBuscador = ({ target }) => {
     setPagActual(0);
-    setBuscarPor(target.value.toLowerCase());
+    setBuscarPor(target.value.toUpperCase());
   };
 
   // cambio de pagina
   const botonAdelante = () => {
-    if(personas.filter((persona) => persona.nombre.includes(buscarPor)).length>pagActual+5){
-      setPagActual(pagActual + 5);
+    if(listado.filter((persona) => persona.nombre.includes(buscarPor)).length>pagActual+CANTIDAD_LIBROS_PAGINAS){
+      setPagActual(pagActual + CANTIDAD_LIBROS_PAGINAS);
     }
   };
   const botonAtras = () => {
     if (pagActual > 0) {
-      setPagActual(pagActual - 5);
+      setPagActual(pagActual - CANTIDAD_LIBROS_PAGINAS);
     }
   };
 
@@ -55,10 +49,10 @@ export default function Personas() {
         <div className="input-group-append"></div>
       </div>
       <div className="d-flex align-items-center justify-content-between mb-3">
-        <Paginacion atras={!pagActual > 0} adelante={!(personas.filter((persona) => persona.nombre.includes(buscarPor)).length>pagActual+5)} botonAdelante={botonAdelante} botonAtras={botonAtras} />
+        <Paginacion atras={!pagActual > 0} adelante={!(listado.filter((persona) => persona.nombre.includes(buscarPor)).length>pagActual+CANTIDAD_LIBROS_PAGINAS)} botonAdelante={botonAdelante} botonAtras={botonAtras} />
       </div>
       <ul className="list-group">
-        <ListPersona personas={filtradoPersonaInicio()} cargando={cargando} />
+        <ListPersona personas={filtradoPersonaInicio()} />
       </ul>
     </div>
   );

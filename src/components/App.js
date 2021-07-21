@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Libros from "./Libro/Libros";
 import Formulario from "./Libro/Formulario";
 import Personas from "./Personas/Personas";
 import Categorias from "./Categorias/Categorias";
 import NavBar from "./Navbar/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { getLibros } from "../services/libroServices";
+import { getCategorias } from "../services/categoriaServices";
+import { getPersonas } from "../services/personaServices";
 import { BrowserRouter as Router,Route } from "react-router-dom"; 
+
 import "./App.css";
 const App = () => {
+
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchAll = async () => {
+      let respuesta = await getLibros();
+      dispatch({ type: "AGREGAR_LISTADO_LIBROS", listado: respuesta });
+       respuesta = await getCategorias();
+      dispatch({ type: "AGREGAR_LISTADO_CATEGORIA", listado: respuesta });
+       respuesta = await getPersonas();
+      dispatch({ type: "AGREGAR_LISTADO_PERSONA", listado: respuesta });
+    };
+    fetchAll();
+  }, [dispatch]);
+
   return (
 
     <div className="bg">

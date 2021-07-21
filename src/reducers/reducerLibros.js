@@ -8,7 +8,7 @@ function reducerLibro(state = estadoInicial, action) {
         nuevoState.listado.push(action.libro);
         return nuevoState;
       case 'AGREGAR_LISTADO_LIBROS':
-        nuevoState.listado = action.listadoLibros;
+        nuevoState.listado = action.listado;
         return nuevoState;
       case 'REMOVER_LIBRO':
         nuevoState.listado = nuevoState.listado.filter((unElemento) => unElemento.id !== action.idElementoARemover);
