@@ -11,3 +11,14 @@ export const getLibros = async () => {
        return  [...respuesta.data];
 
       };
+
+export const deleteLibro = async (idBorrar) => {
+    
+  axios.delete(url+`/${idBorrar}`)  
+  .then(res => {  
+    return  [...res.data];
+  })
+  .catch(error => {
+    return  [...error.response.data.mensaje]})
+
+      };

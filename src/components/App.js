@@ -5,11 +5,12 @@ import Formulario from "./Libro/Formulario";
 import Personas from "./Personas/Personas";
 import Categorias from "./Categorias/Categorias";
 import NavBar from "./Navbar/Navbar";
+import Borrar from "./Libro/Alertas/Alertas";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getLibros } from "../services/libroServices";
 import { getCategorias } from "../services/categoriaServices";
 import { getPersonas } from "../services/personaServices";
-import { BrowserRouter as Router,Route } from "react-router-dom"; 
+import { BrowserRouter as Router,Route,Redirect } from "react-router-dom"; 
 
 import "./App.css";
 const App = () => {
@@ -56,16 +57,19 @@ const App = () => {
                   </div>
                 </div>
               </div>
-              <Router>
+              <Router >
               <div className="bg-light p-4 d-flex justify-content-end text-center">
                 <NavBar/>
               </div>
               <div className="px-4 py-3"></div>
               <div className="col mt-3"></div>
+              <Redirect  from="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion" to="/"/>
               <Route exact path="/" component={Libros} />
+              <Route exact path="/formulario" component={Formulario} />
+              <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={Formulario} />
+              <Route exact path="/delete/:id" component={Borrar} />
                <Route exact path="/personas" component={Personas} />
                <Route exact path="/categorias" component={Categorias} />
-               <Route exact path="/formulario" component={Formulario} />
              </Router>
             </div>
           </div>

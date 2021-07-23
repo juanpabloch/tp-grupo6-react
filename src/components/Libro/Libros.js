@@ -4,6 +4,8 @@ import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
 import Boton from "../Boton/Boton";
 import { useSelector } from "react-redux";
+
+
 import "bootstrap/dist/css/bootstrap.min.css";
 export default function Libros() {
   const [pagActual, setPagActual] = useState(0);
@@ -42,6 +44,7 @@ export default function Libros() {
 
 
   return (
+    
     <div className="py-4 px-4">
       <div className="input-group mb-3">
         <div className="input-group-prepend">

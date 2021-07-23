@@ -3,8 +3,7 @@ import personas from './reducerPersonas';
 import categorias from './reducerCategorias';
 import {combineReducers} from "redux";
 
-const reducer = combineReducers({
-    libros,personas,categorias
-})
 
-  export default reducer;
+export default combineReducers({
+  libros,personas,categorias
+})

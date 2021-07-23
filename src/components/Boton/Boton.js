@@ -1,7 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-export default function Boton({  ruta,name
+export default function Boton({  ruta,name,hola
     }
 ) {
   return (
