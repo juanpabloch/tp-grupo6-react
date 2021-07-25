@@ -1,15 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import axios from 'axios';
 import Libros from "./Libro/Libros";
-import Formulario from "./Libro/Formulario";
+import Modificar from "./Libro/Modificar";
 import Personas from "./Personas/Personas";
 import Categorias from "./Categorias/Categorias";
 import NavBar from "./Navbar/Navbar";
-import Borrar from "./Libro/Alertas/Alertas";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { getLibros } from "../services/libroServices";
-import { getCategorias } from "../services/categoriaServices";
-import { getPersonas } from "../services/personaServices";
+import Borrar from "./Libro/Borrar/Borrar";
 import { BrowserRouter as Router,Route,Redirect } from "react-router-dom"; 
 
 import "./App.css";
@@ -20,12 +17,14 @@ const App = () => {
 
   useEffect(() => {
     const fetchAll = async () => {
-      let respuesta = await getLibros();
-      dispatch({ type: "AGREGAR_LISTADO_LIBROS", listado: respuesta });
-       respuesta = await getCategorias();
-      dispatch({ type: "AGREGAR_LISTADO_CATEGORIA", listado: respuesta });
-       respuesta = await getPersonas();
-      dispatch({ type: "AGREGAR_LISTADO_PERSONA", listado: respuesta });
+      let respuesta = await axios.get("https://tp-grupo6-api.herokuapp.com/libro");
+      dispatch({ type: "AGREGAR_LISTADO_LIBROS", listado: respuesta.data });
+       respuesta = await axios.get(
+        "https://tp-grupo6-api.herokuapp.com/categoria"
+      );
+      dispatch({ type: "AGREGAR_LISTADO_CATEGORIA", listado: respuesta.data });
+       respuesta = await axios.get("https://tp-grupo6-api.herokuapp.com/persona");
+      dispatch({ type: "AGREGAR_LISTADO_PERSONA", listado: respuesta.data });
     };
     fetchAll();
   }, [dispatch]);
@@ -65,8 +64,8 @@ const App = () => {
               <div className="col mt-3"></div>
               <Redirect  from="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion" to="/"/>
               <Route exact path="/" component={Libros} />
-              <Route exact path="/formulario" component={Formulario} />
-              <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={Formulario} />
+              <Route exact path="/formulario" component={Modificar} />
+              <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={Modificar} />
               <Route exact path="/delete/:id" component={Borrar} />
                <Route exact path="/personas" component={Personas} />
                <Route exact path="/categorias" component={Categorias} />

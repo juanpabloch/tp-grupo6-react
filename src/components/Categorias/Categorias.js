@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ListCategoria from "./ListCategorias";
 import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { useSelector } from "react-redux";
 export default function Categorias() {
   const [pagActual, setPagActual] = useState(0);

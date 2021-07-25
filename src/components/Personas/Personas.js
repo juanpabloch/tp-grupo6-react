@@ -3,7 +3,6 @@ import ListPersona from "./ListPersona";
 import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
 import { useSelector } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
 export default function Personas() {
   const [pagActual, setPagActual] = useState(0);
   const [buscarPor, setBuscarPor] = useState("");

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 export default function Navbar() {
   return (
     <>
@@ -19,7 +18,7 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
             <Link className="nav-item nav-link active" to="/">
-              Home{" "}
+              Home
             </Link>
             <Link className="nav-item nav-link" to="/personas">
               Persona

@@ -1,9 +1,5 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
 export default function ListPersonas({ personas, cargando }) {
-  if (cargando) {
-    return <h2>Cargando...</h2>;
-  }
   return (
     <div className="row">
       {personas.map((persona) => (
