@@ -16,8 +16,8 @@ export default function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <Link className="nav-item nav-link active" to="/">
+          <div className="navbar-nav nav-bar-principal">
+            <Link className="nav-item nav-link" to="/">
               Home
             </Link>
             <Link className="nav-item nav-link" to="/personas">

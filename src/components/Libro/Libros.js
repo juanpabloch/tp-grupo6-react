@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+//componentes
 import ListLibros from "./ListLibro";
 import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+
+
 export default function Libros(props) {
   const [pagActual, setPagActual] = useState(0);
 

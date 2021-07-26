@@ -6,7 +6,7 @@ function reducerLibro(state = estadoInicial, action) {
   let index = 0;
   switch (action.type) {
     case "AGREGAR_LIBRO":
-      nuevoState.listado.push(action.libro);
+      nuevoState.listado.push(action.payload);
       return nuevoState;
     case "AGREGAR_LISTADO_LIBROS":
       nuevoState.listado = action.listado;

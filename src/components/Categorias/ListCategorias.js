@@ -6,6 +6,8 @@ export default function ListCategorias({ categoria }) {
 
   const dispatch = useDispatch()
 
+  //hacer que los botones de eliminar se desactiven cuando la categoria esta usada
+
   const deleteCategoria = async (id) => {
     try {
       const response = await axios
@@ -24,9 +26,9 @@ export default function ListCategorias({ categoria }) {
   return (
     <div className="row">
       {categoria.map((cate) => (
-        <li key={cate.categoria_id} className="list-group-item">
+        <li key={cate.categoria_id} className="list-group-item d-flex align-items-center justify-content-between">
           {cate.nombre}
-          <button onClick={()=>{deleteCategoria(cate.categoria_id)}} className='btn btn-secondary'>Eliminar</button>
+          <button onClick={()=>{deleteCategoria(cate.categoria_id)}} className='btn btn-outline-danger'>Eliminar</button>
         </li>
       ))}
     </div>

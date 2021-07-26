@@ -4,30 +4,13 @@ import { useState,useRef,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom"
 const Agregar = (props) => {
-
+  const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
-  const [erroresForm, setErroresForm] = useState({});
+  const [erroresForm, setErroresForm] = useState({nombre: "empty string"});
 
-  const dispatch = useDispatch();
 
   const divError = useRef()
-
-
-  useEffect(() => {
-    const result = validate(value);
-    setErroresForm(result);
-  }, [value]);
-
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    createCategoria(value);
-    setValue("");
-  };
-
-  const onInputChange = (e) => {
-    setValue(e.target.value);
-  };
 
   const validate = (nombre) => {
     const errores = {};
@@ -50,6 +33,21 @@ const Agregar = (props) => {
     }
 
     return errores;
+  };
+
+  useEffect(() => {
+    const result = validate(value);
+    setErroresForm(result);
+  }, [value]);
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    createCategoria(value);
+    setValue("");
+  };
+
+  const onInputChange = (e) => {
+    setValue(e.target.value);
   };
 
   const createCategoria = async (categoria) => {

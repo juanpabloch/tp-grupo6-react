@@ -20,25 +20,9 @@ export default function ListLibro({ libros }) {
   return (
     <div className="row">
       {libros.map((libro) => (
-        <li key={libro.libro_id} className="list-group-item" style={{cursor:"pointer"}}>
+        <li key={libro.libro_id} className="list-group-item d-flex justify-content-between">
           {libro.nombre}
           <div className="btn-group" role="group" aria-label="Basic example">
-
-            {libro.persona_id === null 
-              ? (
-                <Link className="btn btn-danger" to={`/delete/${libro.libro_id}`}>
-                  Borrar
-                </Link>
-                ) 
-              : null}
-
-            <Link className="btn btn-warning"
-              to={{
-                pathname: `/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`
-              }}
-            >
-              Modificar
-            </Link>
 
             {libro.persona_id !== null 
             ? (
@@ -46,12 +30,16 @@ export default function ListLibro({ libros }) {
                 onClick={() => {
                   handleDevolverLibro(libro.libro_id);
                 }}
+                style={{marginRight:"10px"}}
               >
                 Devolver
               </button>
               ) 
               : null}
 
+                <Link className="btn btn-outline-info" to={`/libro/${libro.libro_id}/detalle`}>
+                  detalle
+                </Link>
           </div>
         </li>
       ))}
