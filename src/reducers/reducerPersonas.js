@@ -4,8 +4,8 @@ const estadoInicial = {
 function reducerPersonas(state = estadoInicial, action) {
     const nuevoState = JSON.parse(JSON.stringify(state));
     switch (action.type) {
-      case 'AGREGAR_PERSONA':
-        nuevoState.listado.push(action.posteo);
+      case 'ADD_PERSONA':
+        nuevoState.listado.push(action.payload);
         return nuevoState;
       case 'AGREGAR_LISTADO_PERSONA':
         nuevoState.listado = action.listado;

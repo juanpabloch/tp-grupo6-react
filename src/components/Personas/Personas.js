@@ -3,6 +3,7 @@ import ListPersona from "./ListPersona";
 import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
 import { useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 export default function Personas() {
   const [pagActual, setPagActual] = useState(0);
   const [buscarPor, setBuscarPor] = useState("");
@@ -50,6 +51,7 @@ export default function Personas() {
       </div>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <Paginacion atras={!pagActual > 0} adelante={!(listado.filter((persona) => persona.nombre.includes(buscarPor)).length>pagActual+CANTIDAD_LIBROS_PAGINAS)} botonAdelante={botonAdelante} botonAtras={botonAtras} />
+        <Link className="btn btn-primary" to={"/personas/nuevo"}>Agregar</Link>
       </div>
       <ul className="list-group">
         <ListPersona personas={filtradoPersonaInicio()} />

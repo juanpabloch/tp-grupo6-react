@@ -16,6 +16,7 @@ import DetalleLibro from "./Libro/Detalles";
 import Personas from "./Personas/Personas";
 import ModificarPersona from "./Personas/Modificar/Modificar";
 import BorrarPersona from "./Personas/Borrar/Borrar";
+import FormularioNuevaPersona from "./Personas/Agregar";
 //import categorias
 import Categorias from "./Categorias/Categorias";
 import FormularioNuevaCategoria from './Categorias/FormularioNuevaCategoria'
@@ -62,16 +63,18 @@ const App = () => {
                   <NavBar/>
                 </div>
                 <Route exact path="/" component={Libros} />
-                <Route exact path="/formulario" component={ModificarLibro} />
                 <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={ModificarLibro} />
                 <Route exact path="/delete/:id" component={BorrarLibro} />
+                <Route exact path="/libro/:id/detalle" component={DetalleLibro} />
+                <Route exact path="/libro/nuevo" component={FormularioNuevoLibro} />
+
                 <Route exact path="/personas" component={Personas} />
                 <Route exact path="/personas/modificar/:id/:nombre/:apellido/:alias/:email" component={ModificarPersona} />
                 <Route exact path="/personas/delete/:id" component={BorrarPersona} />
+                <Route exact path="/personas/nuevo" component={FormularioNuevaPersona} />
+
                 <Route exact path="/categorias" component={Categorias} />
                 <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
-                <Route exact path="/libro/:id/detalle" component={DetalleLibro} />
-                <Route exact path="/libro/nuevo" component={FormularioNuevoLibro} />
              </Router>
             </div>
           </div>
