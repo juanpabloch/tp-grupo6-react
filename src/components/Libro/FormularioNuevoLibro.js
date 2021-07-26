@@ -156,7 +156,7 @@ const LibroForm = () => {
         <div className="mb-3">
           <label htmlFor="categoria">Elejir categoria: </label>
           <br />
-          <select name="categoria" id="categoria" onChange={(e) => {setDataFormulario({...dataFormulario, categoria: e.target.value}); }}>
+          <select className="form-select"  name="categoria" id="categoria" onChange={(e) => {setDataFormulario({...dataFormulario, categoria: e.target.value}); }}>
             <option value="">Seleccionar categoria</option>
             {opcionesCate()}
           </select>
@@ -169,7 +169,7 @@ const LibroForm = () => {
         <div className="mb-3">
           <label htmlFor="persona">Elejir persona: </label>
           <br />
-          <select name="persona" id="persona">
+          <select className="form-select"  name="persona" id="persona">
             <option value="null">Ninguna persona</option>
             {opcionesPers()}
           </select>

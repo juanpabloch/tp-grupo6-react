@@ -9,15 +9,33 @@ import Buscar from "../Buscar/Buscar";
 
 
 export default function Libros(props) {
+  
   const [pagActual, setPagActual] = useState(0);
 
   const [buscarPor, setBuscarPor] = useState("");
 
-  const listado = useSelector((state) => state.libros.listado);
+  const [buscarGenero, setbuscarGenero] = useState("");
+
+  let listado = useSelector((state) => state.libros.listado);
+
+  const categorias = useSelector((state) => state.categorias.listado);
 
   const CANTIDAD_LIBROS_PAGINAS = 3;
 
-  const filtradoLibroinicio = () => {
+
+  const filtradoLibroGenero = () => {
+    if (buscarGenero === "") {
+     return listado
+    }
+    const filtrado = listado.filter((libro) =>
+      libro.categoria_id === (parseInt(buscarGenero))
+    );
+    listado = filtrado;
+  };
+
+
+  const filtradoLibroTexto= () => {
+    filtradoLibroGenero()
     if (buscarPor.length === 0) {
       return listado.slice(pagActual, pagActual + CANTIDAD_LIBROS_PAGINAS);
     }
@@ -28,16 +46,28 @@ export default function Libros(props) {
   };
 
   const enCambioBuscador = ({ target }) => {
-    setPagActual(0);
+    setPagActual(0)
     setBuscarPor(target.value.toUpperCase());
   };
 
+  const enCambioBuscadorGenero = ({ target }) => {
+    setPagActual(0)
+    setbuscarGenero(target.value);
+  };
+
+  const opcionesCate = () => {
+    return categorias.map((item) => (
+      <option key={item.categoria_id} value={item.categoria_id}>
+        {item.nombre}
+      </option>
+    ));
+  };
 
   // cambio de pagina
   const botonAdelante = () => {
     if (
-      listado.filter((libro) => libro.nombre.includes(buscarPor)).length >
-      pagActual + CANTIDAD_LIBROS_PAGINAS
+      listado.filter((libro) => libro.nombre.includes(buscarPor).length >
+      pagActual + CANTIDAD_LIBROS_PAGINAS )
     ) {
       setPagActual(pagActual + CANTIDAD_LIBROS_PAGINAS);
     }
@@ -61,16 +91,27 @@ export default function Libros(props) {
           <span className="input-group-text">Buscar</span>
         </div>
         <Buscar buscarPor={buscarPor} enCambioBuscador={enCambioBuscador} de={"Libro"}/>
-        <div className="input-group-append"></div>
       </div>
+      <div className="mb-3">
+          <label htmlFor="categoria">Elejir categoria: </label>
+          <br />
+          <select className="form-select" name="categoria" id="categoria" onChange={enCambioBuscadorGenero}>
+            <option value="">Seleccionar categoria</option>
+            {opcionesCate()}
+          </select>
+        </div>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <Paginacion
           atras={!pagActual > 0}
           adelante={
-            !(
-              listado.filter((libro) => libro.nombre.includes(buscarPor))
+            !(buscarGenero===""?listado.filter((libro) => libro.nombre.includes(buscarPor))
+            .length >
+          pagActual + CANTIDAD_LIBROS_PAGINAS:
+              listado.filter((libro) =>libro.categoria_id === (parseInt(buscarGenero)))
                 .length >
-              pagActual + CANTIDAD_LIBROS_PAGINAS
+              pagActual + CANTIDAD_LIBROS_PAGINAS && listado.filter((libro) => libro.nombre.includes(buscarPor))
+              .length >
+            pagActual + CANTIDAD_LIBROS_PAGINAS
             )
           }
           botonAdelante={botonAdelante}
@@ -79,7 +120,7 @@ export default function Libros(props) {
       <Link className="btn btn-primary" to={"/libro/nuevo"}>Agregar</Link>
       </div>
       <ul className="list-group">
-        <ListLibros libros={filtradoLibroinicio()} />
+        <ListLibros libros={filtradoLibroTexto()} />
       </ul>
     </div>
   );
