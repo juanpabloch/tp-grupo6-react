@@ -55,6 +55,7 @@ export default function Libros(props) {
           <strong>Excelente!</strong> {props.location.exito}
           <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>:null}
+      <div className="px-4 py-3 titulo-pagina">Lista de Libros</div>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>

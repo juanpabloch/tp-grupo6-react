@@ -40,6 +40,7 @@ export default function Personas() {
 
   return (
     <div className="py-4 px-4">
+      <div className="px-4 py-3 titulo-pagina">Lista de Personas</div>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>

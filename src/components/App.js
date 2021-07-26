@@ -61,9 +61,6 @@ const App = () => {
                 <div className="bg-light p-3 d-flex justify-content-end text-center">
                   <NavBar/>
                 </div>
-                <div className="px-4 py-3 titulo-pagina">Lista de Libros</div>
-
-                
                 <Route exact path="/" component={Libros} />
                 <Route exact path="/formulario" component={ModificarLibro} />
                 <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={ModificarLibro} />
@@ -75,7 +72,6 @@ const App = () => {
                 <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
                 <Route exact path="/libro/:id/detalle" component={DetalleLibro} />
                 <Route exact path="/libro/nuevo" component={FormularioNuevoLibro} />
-                
              </Router>
             </div>
           </div>
@@ -87,5 +83,3 @@ const App = () => {
 };
 
 export default App;
-
-//<Redirect  from="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion" to="/"/>
