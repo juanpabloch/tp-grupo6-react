@@ -1,5 +1,11 @@
   :root{
-    
+    --rosa: #f26f8a;
+    --amarillo: #f8e29a;
+    --azul: #2c54a5;
+    --verde: #79c0c8;
+    --negro: #281f23;
+    --gris: #41393c;
+
   }
   
   .bg {
@@ -18,16 +24,24 @@
     /* background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
     background-size: cover;
     background-repeat: no-repeat */
-    background-color: rgba(58, 58, 58, 0.774);
+    background-color: #41393cc0;
 }
 
 body {
     background: #654ea3;
     background: linear-gradient(to right, #e96443, #904e95);
     min-height: 100vh;
-    overflow-x: hidden
+    overflow-x: hidden;
+    color: var(--negro)
 }
 
+a, .btn{
+  transition: all 0.3s ease;
+}
+.link-volver-libro:hover{
+  color: var(--azul);
+  transform: translateX(-5px);
+}
 
 /*pagina principal*/
 .titulo-pagina{
@@ -48,7 +62,6 @@ body {
   background-color: rgba(255, 255, 255, 0.719) !important;
 }
 
-
 /* detalles libro */
 .link-volver-libro{
   text-decoration: none;
@@ -57,3 +70,52 @@ body {
   font-weight: 600;
 }
 
+/* botones */
+.btn-outline-info{
+  border-color: var(--verde);
+  color: var(--verde);
+}
+  .btn-outline-info:hover{
+    background-color: var(--verde);
+    border-color: var(--verde);
+    color: var(--negro);
+  }
+
+.btn-primary{
+  border-color: var(--azul);
+  background-color: var(--azul);
+  color: #fff;
+}
+  .btn-primary:disabled{
+    border-color: none;
+    background-color: none;
+    color: var(--verde);
+  }
+  .btn-primary:focus{
+    outline: none;
+    box-shadow: none;
+  }
+
+.btn-outline-danger{
+  border-color: var(--rosa);
+  color: var(--rosa);
+}
+  .btn-outline-danger:hover{
+    border-color: var(--rosa);
+    background-color: var(--rosa);
+  }
+  .btn-outline-danger:disabled{
+    border-color: var(--rosa);
+    color: var(--rosa);
+    background-color: #e7e7e7;
+  }
+  
+.btn-outline-dark{
+  border-color: var(--negro);
+  color: var(--negro);
+}
+  .btn-outline-dark:hover{
+    border-color: var(--negro);
+    color: #fff;
+    background-color: var(--gris);
+  }
