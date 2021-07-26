@@ -1,25 +1,14 @@
 import React from "react";
 import {Link} from "react-router-dom";
 export default function ListPersonas({ personas }) {
+  //:id/:nombre/:apellido/:alias/:email
   return (
     <div className="row">
       {personas.map((persona) => (
         <li key={persona.persona_id} className="list-group-item d-flex justify-content-between align-items-center">
           {persona.nombre}
           <div className="btn btn-group">
-              <Link className="btn btn-outline-danger" to={`/personas/delete/${persona.persona_id}`}>
-                Borrar
-              </Link>
-
-              <Link
-                className="btn btn-outline-dark"
-                to={{
-                  pathname: `/personas/modificar/${persona.persona_id}/${persona.nombre}/${persona.apellido}/${persona.alias}/${persona.email}`,
-                }}>
-                  Modificar
-                </Link>
-
-                <Link className="btn btn-outline-info mr-10" to={`/libro/${persona.persona_id}/detalle`}>
+                <Link className="btn btn-outline-info" to={`/personas/detalle/${persona.persona_id}/${persona.nombre}/${persona.apellido}/${persona.alias}/${persona.email}`}>
                   VER
                 </Link>
             </div>

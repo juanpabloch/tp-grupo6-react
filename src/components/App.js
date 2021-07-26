@@ -17,6 +17,7 @@ import Personas from "./Personas/Personas";
 import ModificarPersona from "./Personas/Modificar/Modificar";
 import BorrarPersona from "./Personas/Borrar/Borrar";
 import FormularioNuevaPersona from "./Personas/Agregar";
+import DetallePersona from "./Personas/Detalles";
 //import categorias
 import Categorias from "./Categorias/Categorias";
 import FormularioNuevaCategoria from './Categorias/FormularioNuevaCategoria'
@@ -71,6 +72,7 @@ const App = () => {
                 <Route exact path="/personas" component={Personas} />
                 <Route exact path="/personas/modificar/:id/:nombre/:apellido/:alias/:email" component={ModificarPersona} />
                 <Route exact path="/personas/delete/:id" component={BorrarPersona} />
+                <Route exact path="/personas/detalle/:id/:nombre/:apellido/:alias/:email" component={DetallePersona} />
                 <Route exact path="/personas/nuevo" component={FormularioNuevaPersona} />
 
                 <Route exact path="/categorias" component={Categorias} />
