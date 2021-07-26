@@ -84,7 +84,6 @@ const LibroForm = () => {
   const onFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      let campos = e.target.elements
       const persona = e.target.elements.persona.value;
       const response = await axios
         .post("https://tp-grupo6-api.herokuapp.com/libro", {

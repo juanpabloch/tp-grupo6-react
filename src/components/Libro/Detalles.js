@@ -2,7 +2,7 @@ import React, { useEffect,  useState } from 'react'
 import { useParams, Link } from "react-router-dom";
 import axios from 'axios'
 import { useSelector } from "react-redux";
-
+import Devolver from "./Devolver"
 const Detalle = ()=>{
     const {id} = useParams()
     const personas = useSelector((state)=>state.personas.listado)
@@ -30,18 +30,19 @@ const Detalle = ()=>{
                         ? `Libro prestado a: ${personaAmostar.alias}`
                         : 'Libro en biblioteca' 
                     }
-                    <a className="link-volver-libro" href="/">Volver</a>
+                    <Link className="link-volver-libro" to="/">Volver</Link>
                 </div>
                 <div className="card-body">
                     <h3 className="card-title">{libro.nombre}</h3>
                     <p className="card-text">{libro.descripcion}</p>
                     <p className="card-text">{`Genero: ${categoria}`}</p>
                     {libro.persona_id === null
-                        ?<a class="btn btn-outline-danger" href={`/delete/${libro.libro_id}`} style={{marginRight: '10px'}}>Borrar</a>
-                        : ''
+                        ?<Link className="btn btn-outline-danger" to={`/delete/${libro.libro_id}`} style={{marginRight: '10px'}}>Borrar</Link>
+                        : null
                     }
-                    
-                    <a className="btn btn-outline-dark" href={`/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`}>Modificar</a>
+                    {libro.persona_id !== null ?<Devolver id={libro.libro_id}/>:null}
+
+                    <Link className="btn btn-outline-dark" to={`/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`}>Modificar</Link>
 
                 </div>
             </div>
