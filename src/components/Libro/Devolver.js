@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from "axios";
 import { useDispatch } from "react-redux";
-export default function Devolver({id}) {
+export default function Devolver({id,disable}) {
     const dispatch = useDispatch();
 
     const handleDevolverLibro = async (Id) => {
@@ -23,6 +23,7 @@ export default function Devolver({id}) {
                 onClick={() => {
                   handleDevolverLibro(id);
                 }}
+                disabled={disable}
               >
                 Devolver
               </button>

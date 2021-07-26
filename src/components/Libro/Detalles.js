@@ -36,11 +36,9 @@ const Detalle = ()=>{
                     <h3 className="card-title">{libro.nombre}</h3>
                     <p className="card-text">{libro.descripcion}</p>
                     <p className="card-text">{`Genero: ${categoria}`}</p>
-                    {libro.persona_id === null
-                        ?<Link className="btn btn-outline-danger" to={`/delete/${libro.libro_id}`} style={{marginRight: '10px'}}>Borrar</Link>
-                        : null
-                    }
-                    {libro.persona_id !== null ?<Devolver id={libro.libro_id}/>:null}
+                   <Link className={libro.persona_id === null?"btn btn-outline-danger ":"btn btn-outline-danger disabled"}  to={`/delete/${libro.libro_id}`} style={{marginRight: '10px'}}>Borrar</Link>
+
+                    <Devolver disable={libro.persona_id !== null ?false:true} id={libro.libro_id}/>
 
                     <Link className="btn btn-outline-dark" to={`/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`}>Modificar</Link>
 

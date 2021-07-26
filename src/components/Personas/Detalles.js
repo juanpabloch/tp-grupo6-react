@@ -22,7 +22,7 @@ const Detalle = () => {
               ? `Libros: ${LibrosToMostar.join()}`
               : `Sin libros`}
           </span>
-          <Link className="link-volver-libro" to="/">
+          <Link className="link-volver-libro" to="/personas">
             Volver
           </Link>
         </div>
@@ -32,12 +32,15 @@ const Detalle = () => {
           <p className="card-text">{alias}</p>
           <p className="card-text">{email}</p>
           <Link
-            className="btn btn-outline-danger"
+            className={!LibrosToMostar.join()?"btn btn-outline-danger":"btn btn-outline-danger disabled"}
             to={`/personas/delete/${id}`}
+            style={{marginRight: '10px'}}
+            
           >
             Borrar
           </Link>
           <Link
+           style={{marginRight: '10px'}}
             className="btn btn-outline-dark"
             to={{
               pathname: `/personas/modificar/${id}/${nombre}/${apellido}/${alias}/${email}`,
