@@ -3,6 +3,7 @@ import ListCategoria from "./ListCategorias";
 import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 export default function Categorias() {
   const [pagActual, setPagActual] = useState(0);
   
@@ -42,6 +43,7 @@ export default function Categorias() {
 
   return (
     <div className="py-4 px-4">
+
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>
@@ -49,9 +51,12 @@ export default function Categorias() {
         <Buscar buscarPor={buscarPor} enCambioBuscador={enCambioBuscador}/>
         <div className="input-group-append"></div>
       </div>
+
       <div className="d-flex align-items-center justify-content-between mb-3">
-      <Paginacion atras={!pagActual > 0} adelante={!(listado.filter((categoria) => categoria.nombre.includes(buscarPor)).length>pagActual+CANTIDAD_LIBROS_PAGINAS)} botonAdelante={botonAdelante} botonAtras={botonAtras} />
+        <Paginacion atras={!pagActual > 0} adelante={!(listado.filter((categoria) => categoria.nombre.includes(buscarPor)).length>pagActual+CANTIDAD_LIBROS_PAGINAS)} botonAdelante={botonAdelante} botonAtras={botonAtras} />
+        <Link className="btn btn-primary" to={"/categoria/nuevo"}>Agregar</Link>
       </div>
+
       <ul className="list-group">
         <ListCategoria categoria={filtradoCategoriaInicio()} />
       </ul>

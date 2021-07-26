@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+
 export default function ListLibro({ libros }) {
   const dispatch = useDispatch();
 
@@ -15,19 +16,23 @@ export default function ListLibro({ libros }) {
       console.log(error);
     }
   };
+
   return (
     <div className="row">
       {libros.map((libro) => (
-        <li key={libro.libro_id} className="list-group-item">
+        <li key={libro.libro_id} className="list-group-item" style={{cursor:"pointer"}}>
           {libro.nombre}
           <div className="btn-group" role="group" aria-label="Basic example">
-            {libro.persona_id === null ? (
-              <Link className="btn btn-danger" to={`/delete/${libro.libro_id}`}>
-                Borrar
-              </Link>
-            ) : null}
-            <Link
-              className="btn btn-warning"
+
+            {libro.persona_id === null 
+              ? (
+                <Link className="btn btn-danger" to={`/delete/${libro.libro_id}`}>
+                  Borrar
+                </Link>
+                ) 
+              : null}
+
+            <Link className="btn btn-warning"
               to={{
                 pathname: `/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`,
                 libro: libro,
@@ -35,16 +40,19 @@ export default function ListLibro({ libros }) {
             >
               Modificar
             </Link>
-            {libro.persona_id !== null ? (
-              <button
-                className="btn btn-info"
+
+            {libro.persona_id !== null 
+            ? (
+              <button className="btn btn-info"
                 onClick={() => {
                   handleDevolverLibro(libro.libro_id);
                 }}
               >
                 Devolver
               </button>
-            ) : null}
+              ) 
+              : null}
+
           </div>
         </li>
       ))}

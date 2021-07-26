@@ -67,7 +67,7 @@ export default function Libros() {
           botonAdelante={botonAdelante}
           botonAtras={botonAtras}
         />
-      <Link className="btn btn-primary" to={"/formulario"}>Agregar</Link>
+      <Link className="btn btn-primary" to={"/libro/nuevo"}>Agregar</Link>
       </div>
       <ul className="list-group">
         <ListLibros libros={filtradoLibroinicio()} />

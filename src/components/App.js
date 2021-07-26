@@ -1,18 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { BrowserRouter as Router,Route,Redirect } from "react-router-dom"; 
 import axios from 'axios';
+import "./App.css";
+
+import NavBar from "./Navbar/Navbar";
+
+//import libro
 import Libros from "./Libro/Libros";
 import Modificar from "./Libro/Modificar";
-import Personas from "./Personas/Personas";
-import Categorias from "./Categorias/Categorias";
-import NavBar from "./Navbar/Navbar";
 import Borrar from "./Libro/Borrar/Borrar";
-import { BrowserRouter as Router,Route,Redirect } from "react-router-dom"; 
+import FormularioNuevoLibro from './Libro/FormularioNuevoLibro'
+//import personas
+import Personas from "./Personas/Personas";
+//import categorias
+import Categorias from "./Categorias/Categorias";
+import FormularioNuevaCategoria from './Categorias/FormularioNuevaCategoria'
 
-import "./App.css";
 const App = () => {
-
-
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,18 +63,21 @@ const App = () => {
                 </div>
               </div>
               <Router >
-              <div className="bg-light p-4 d-flex justify-content-end text-center">
-                <NavBar/>
-              </div>
-              <div className="px-4 py-3"></div>
-              <div className="col mt-3"></div>
-              <Redirect  from="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion" to="/"/>
-              <Route exact path="/" component={Libros} />
-              <Route exact path="/formulario" component={Modificar} />
-              <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={Modificar} />
-              <Route exact path="/delete/:id" component={Borrar} />
-               <Route exact path="/personas" component={Personas} />
-               <Route exact path="/categorias" component={Categorias} />
+                <div className="bg-light p-4 d-flex justify-content-end text-center">
+                  <NavBar/>
+                </div>
+                <div className="px-4 py-3"></div>
+                <div className="col mt-3"></div>
+                <Redirect  from="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion" to="/"/>
+                <Route exact path="/" component={Libros} />
+                <Route exact path="/formulario" component={Modificar} />
+                <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={Modificar} />
+                <Route exact path="/delete/:id" component={Borrar} />
+                <Route exact path="/personas" component={Personas} />
+                <Route exact path="/categorias" component={Categorias} />
+                <Route exact path="/libro/nuevo" component={FormularioNuevoLibro} />
+                <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
+
              </Router>
             </div>
           </div>
