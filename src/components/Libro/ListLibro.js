@@ -34,8 +34,7 @@ export default function ListLibro({ libros }) {
 
             <Link className="btn btn-warning"
               to={{
-                pathname: `/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`,
-                libro: libro,
+                pathname: `/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`
               }}
             >
               Modificar

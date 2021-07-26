@@ -9,13 +9,13 @@ export default function BorrarLibro(props) {
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState(false);
 
-  const handleBorrarLibro = async (idAborrar) => {
+  const handleBorrarPersona = async (idAborrar) => {
     try {
      await axios.delete(
-        `https://tp-grupo6-api.herokuapp.com/libro/${idAborrar}`
+        `https://tp-grupo6-api.herokuapp.com/persona/${idAborrar}`
       );
-      dispatch({ type: "REMOVER_LIBRO", payload: idAborrar });
-      props.history.push({pathname:'/',exito:"Has borrado perfectamente a"});
+      dispatch({ type: "REMOVER_PERSONA", payload: idAborrar });
+      props.history.push('/personas');
     } catch (error) {
       setError(true);
       setMsg(error.response.data.mensaje);
@@ -28,7 +28,7 @@ export default function BorrarLibro(props) {
         <div className="col-sm-6 col-md-6 align-middle">
           <div className="alert alert-danger ">
             <div className="d-flex justify-content-between">
-              <span className="glyphicon glyphicon-hand-right"></span>{" "}
+              <span className="glyphicon glyphicon-hand-right"></span>
               <strong>Error</strong>
               <button
                 type="button"
@@ -46,16 +46,16 @@ export default function BorrarLibro(props) {
       ) : null}
       <div className="alert alert-info" role="alert">
         <h4 className="alert-heading">
-          Estas seguro de querer borrar el libro?
+          Estas seguro de querer borrar a esta Persona?
         </h4>
       </div>
       <div className="d-flex justify-content-center">
-        <Link className="btn btn-secondary m-3" to={"/"}>
+        <Link className="btn btn-secondary m-3" to={"/personas"}>
           Cancelar
         </Link>
         <button
           className="btn btn-primary m-3"
-          onClick={() => handleBorrarLibro(parseInt(id))}
+          onClick={() => handleBorrarPersona(parseInt(id))}
         >
           Aceptar
         </button>

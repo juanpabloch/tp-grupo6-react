@@ -8,11 +8,13 @@ import NavBar from "./Navbar/Navbar";
 
 //import libro
 import Libros from "./Libro/Libros";
-import Modificar from "./Libro/Modificar";
-import Borrar from "./Libro/Borrar/Borrar";
+import BorrarLibro from "./Libro/Borrar/Borrar";
 import FormularioNuevoLibro from './Libro/FormularioNuevoLibro'
+import ModificarLibro from "./Libro/Modificar";
 //import personas
 import Personas from "./Personas/Personas";
+import ModificarPersona from "./Personas/Modificar/Modificar";
+import BorrarPersona from "./Personas/Borrar/Borrar";
 //import categorias
 import Categorias from "./Categorias/Categorias";
 import FormularioNuevaCategoria from './Categorias/FormularioNuevaCategoria'
@@ -70,14 +72,15 @@ const App = () => {
                 <div className="col mt-3"></div>
                 <Redirect  from="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion" to="/"/>
                 <Route exact path="/" component={Libros} />
-                <Route exact path="/formulario" component={Modificar} />
-                <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={Modificar} />
-                <Route exact path="/delete/:id" component={Borrar} />
+                <Route exact path="/formulario" component={ModificarLibro} />
+                <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={ModificarLibro} />
+                <Route exact path="/delete/:id" component={BorrarLibro} />
                 <Route exact path="/personas" component={Personas} />
+                <Route exact path="/personas/modificar/:id/:nombre/:apellido/:alias/:email" component={ModificarPersona} />
+                <Route exact path="/personas/delete/:id" component={BorrarPersona} />
                 <Route exact path="/categorias" component={Categorias} />
                 <Route exact path="/libro/nuevo" component={FormularioNuevoLibro} />
                 <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
-
              </Router>
             </div>
           </div>

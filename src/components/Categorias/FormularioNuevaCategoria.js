@@ -1,44 +1,86 @@
 import React from "react";
-import { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
+import { useState,useRef,useEffect } from "react";
 import { useDispatch } from "react-redux";
+import {Link} from "react-router-dom"
+const Agregar = (props) => {
 
-const Form = (props) => {
-    const dispatch = useDispatch();
   const [value, setValue] = useState("");
 
-  const createCategoria = async (categoria) => {
-    try {
-        const response = await axios
-        .post("https://tp-grupo6-api.herokuapp.com/categoria", {
-          nombre: categoria,
-        })
+  const [erroresForm, setErroresForm] = useState({});
 
-        dispatch({
-          type: "AGREGAR_UNA_CATEGORIA",
-          payload: response.data[0],
-        });
+  const dispatch = useDispatch();
 
-    } catch (error) {
-      console.log(error.response.data.mensaje)
-    }
-    
-  };
+  const divError = useRef()
+
+
+  useEffect(() => {
+    const result = validate(value);
+    setErroresForm(result);
+  }, [value]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    createCategoria(value)
+    createCategoria(value);
     setValue("");
-    props.history.push('/categorias')
   };
 
   const onInputChange = (e) => {
     setValue(e.target.value);
   };
 
+  const validate = (nombre) => {
+    const errores = {};
+
+    if (!nombre)
+    errores.nombre ="Falta enviar datos";
+
+    nombre = nombre.trim();
+
+    if (!/^([^0-9_@./#&+*-?!><]*)$/gi.test(nombre))
+    errores.nombre = "El nombre debe contener caracteres alfabeticos ";
+
+    if (nombre.length < 3) {
+      errores.nombre = "Nombre debe tener mas de 3 caracteres";
+    }
+
+    if (nombre.length > 70) {
+      errores.nombre =
+        "La descripción no debe tener mas de 70 caracteres";
+    }
+
+    return errores;
+  };
+
+  const createCategoria = async (categoria) => {
+    try {
+      const response = await axios.post(
+        "https://tp-grupo6-api.herokuapp.com/categoria",
+        {
+          nombre: categoria,
+        }
+      );
+
+      dispatch({
+        type: "AGREGAR_UNA_CATEGORIA",
+        payload: response.data[0],
+      });
+      props.history.push('/categorias');
+    } catch (error) {
+    divError.current.innerHTML = `
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> ${error.response.data.mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `
+
+    }
+  };
+
   return (
-    <div className='container mb-4'>
+    <div className="container p-5">
       <form onSubmit={onFormSubmit}>
+      <div ref={divError}></div>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Nueva Categoria
@@ -50,14 +92,19 @@ const Form = (props) => {
             id="categoria"
             onChange={onInputChange}
           />
+            <div className="form-text" style={{ color: "red" }}>
+            {erroresForm.nombre}
+          </div>
         </div>
-
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <div className="d-flex justify-content-center">
+        <Link className="btn btn-secondary m-3" to="/categorias">Cancelar</Link>
+        <button type="submit" className="btn btn-primary m-3">
+          Aceptar
         </button>
+        </div>
       </form>
     </div>
   );
 };
 
-export default Form;
+export default Agregar;

@@ -4,7 +4,7 @@ import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-export default function Libros() {
+export default function Libros(props) {
   const [pagActual, setPagActual] = useState(0);
 
   const [buscarPor, setBuscarPor] = useState("");
@@ -47,6 +47,10 @@ export default function Libros() {
 
   return (
     <div className="py-4 px-4">
+      {props.location.exito!==undefined? <div className="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Excelente!</strong> {props.location.exito}
+          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>:null}
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>
