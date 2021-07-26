@@ -48,7 +48,7 @@ export default function Categorias() {
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>
         </div>
-        <Buscar buscarPor={buscarPor} enCambioBuscador={enCambioBuscador}/>
+        <Buscar buscarPor={buscarPor} enCambioBuscador={enCambioBuscador} de={"Categoria"}/>
         <div className="input-group-append"></div>
       </div>
 

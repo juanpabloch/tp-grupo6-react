@@ -1,6 +1,6 @@
 import React from "react";
 export default function Buscar({  buscarPor,
-    enCambioBuscador}
+    enCambioBuscador,de}
 ) {
   return (
      <>
@@ -8,6 +8,7 @@ export default function Buscar({  buscarPor,
           type="text"
           className="form-control"
           aria-label="Amount (to the nearest dollar)"
+          placeholder={`Escriba el nombre de ${de} que desea buscar...`}
           value={buscarPor}
           onChange={enCambioBuscador}
         />

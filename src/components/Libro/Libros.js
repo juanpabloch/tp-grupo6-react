@@ -60,7 +60,7 @@ export default function Libros(props) {
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>
         </div>
-        <Buscar buscarPor={buscarPor} enCambioBuscador={enCambioBuscador} />
+        <Buscar buscarPor={buscarPor} enCambioBuscador={enCambioBuscador} de={"Libro"}/>
         <div className="input-group-append"></div>
       </div>
       <div className="d-flex align-items-center justify-content-between mb-3">
