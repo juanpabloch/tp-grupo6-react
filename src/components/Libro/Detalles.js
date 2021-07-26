@@ -23,7 +23,7 @@ const Detalle = ()=>{
     const personaAmostar = personas.find(persona=>persona.persona_id === libro.persona_id)
 
     return (
-        <div className="container mb-5">
+        <div className="container mb-5 mt-4">
             <div className="card">
                 <div className="card-header d-flex justify-content-between">
                     {personaAmostar

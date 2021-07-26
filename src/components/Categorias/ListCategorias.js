@@ -1,12 +1,14 @@
 import React from "react";
 import axios from 'axios'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ListCategorias({ categoria }) {
 
   const dispatch = useDispatch()
-
   //hacer que los botones de eliminar se desactiven cuando la categoria esta usada
+  let listado = useSelector((state) => state.libros.listado);
+  const categoriasTemp = listado.map(libro=>libro.categoria_id)
+  const categoriasUsadas = Array.from(new Set(categoriasTemp))
 
   const deleteCategoria = async (id) => {
     try {
@@ -23,12 +25,20 @@ export default function ListCategorias({ categoria }) {
     }
   };
 
+  const desabilitarUsados = (id)=>{
+      if(categoriasUsadas.includes(id)){
+        return <button onClick={()=>{deleteCategoria(id)}} className='btn btn-outline-danger' disabled>Eliminar</button>
+      }
+      return <button onClick={()=>{deleteCategoria(id)}} className='btn btn-outline-danger' >Eliminar</button>
+  }
+
+  
   return (
     <div className="row">
       {categoria.map((cate) => (
         <li key={cate.categoria_id} className="list-group-item d-flex align-items-center justify-content-between">
           {cate.nombre}
-          <button onClick={()=>{deleteCategoria(cate.categoria_id)}} className='btn btn-outline-danger'>Eliminar</button>
+          {desabilitarUsados(cate.categoria_id)}
         </li>
       ))}
     </div>
