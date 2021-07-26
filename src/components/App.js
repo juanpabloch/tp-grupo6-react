@@ -5,17 +5,15 @@ import axios from 'axios';
 import "./App.css";
 
 import NavBar from "./Navbar/Navbar";
-
+import Borrar from "./Borrar/Borrar";
 //import libro
 import Libros from "./Libro/Libros";
-import BorrarLibro from "./Libro/Borrar/Borrar";
 import FormularioNuevoLibro from './Libro/FormularioNuevoLibro'
 import ModificarLibro from "./Libro/Modificar";
 import DetalleLibro from "./Libro/Detalles";
 //import personas
 import Personas from "./Personas/Personas";
 import ModificarPersona from "./Personas/Modificar/Modificar";
-import BorrarPersona from "./Personas/Borrar/Borrar";
 import FormularioNuevaPersona from "./Personas/Agregar";
 import DetallePersona from "./Personas/Detalles";
 //import categorias
@@ -65,18 +63,19 @@ const App = () => {
                 </div>
                 <Route exact path="/" component={Libros} />
                 <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={ModificarLibro} />
-                <Route exact path="/delete/:id" component={BorrarLibro} />
+                <Route exact path="/delete/:id/:tipo" component={Borrar} />
                 <Route exact path="/libro/:id/detalle" component={DetalleLibro} />
                 <Route exact path="/libro/nuevo" component={FormularioNuevoLibro} />
 
                 <Route exact path="/personas" component={Personas} />
                 <Route exact path="/personas/modificar/:id/:nombre/:apellido/:alias/:email" component={ModificarPersona} />
-                <Route exact path="/personas/delete/:id" component={BorrarPersona} />
+                <Route exact path="/personas/delete/:id/:tipo" component={Borrar} />
                 <Route exact path="/personas/detalle/:id/:nombre/:apellido/:alias/:email" component={DetallePersona} />
                 <Route exact path="/personas/nuevo" component={FormularioNuevaPersona} />
 
                 <Route exact path="/categorias" component={Categorias} />
                 <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
+                <Route exact path="/categoria/delete/:id/:tipo" component={Borrar} />
              </Router>
             </div>
           </div>

@@ -3,19 +3,28 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+
+
+const VALORES = {
+    "persona": ["https://tp-grupo6-api.herokuapp.com/persona/","REMOVER_PERSONA","/personas"],
+    "libro": ["https://tp-grupo6-api.herokuapp.com/libro/","REMOVER_LIBRO","/"],
+    "categoria": ["https://tp-grupo6-api.herokuapp.com/categoria/","REMOVER_CATEGORIA","/categorias"],
+  };
+
+
 export default function BorrarLibro(props) {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const { id , tipo} = useParams();
   const [error, setError] = useState(false);
   const [msg, setMsg] = useState(false);
 
   const handleBorrarPersona = async (idAborrar) => {
     try {
      await axios.delete(
-        `https://tp-grupo6-api.herokuapp.com/persona/${idAborrar}`
+        VALORES[tipo][0]+idAborrar
       );
-      dispatch({ type: "REMOVER_PERSONA", payload: idAborrar });
-      props.history.push('/personas');
+      dispatch({ type: VALORES[tipo][1], payload: idAborrar });
+      props.history.push(VALORES[tipo][2]);
     } catch (error) {
       setError(true);
       setMsg(error.response.data.mensaje);
@@ -46,11 +55,11 @@ export default function BorrarLibro(props) {
       ) : null}
       <div className="alert alert-info" role="alert">
         <h4 className="alert-heading">
-          Estas seguro de querer borrar a esta Persona?
+          Estas seguro de querer borrar a esta {tipo}?
         </h4>
       </div>
       <div className="d-flex justify-content-center">
-        <Link className="btn btn-secondary m-3" to={"/personas"}>
+        <Link className="btn btn-secondary m-3" to={VALORES[tipo][2]}>
           Cancelar
         </Link>
         <button

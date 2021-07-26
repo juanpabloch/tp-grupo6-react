@@ -33,7 +33,7 @@ const Detalle = () => {
           <p className="card-text">{email}</p>
           <Link
             className={!LibrosToMostar.join()?"btn btn-outline-danger":"btn btn-outline-danger disabled"}
-            to={`/personas/delete/${id}`}
+            to={`/personas/delete/${id}/persona`}
             style={{marginRight: '10px'}}
             
           >
