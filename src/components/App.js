@@ -51,7 +51,7 @@ const App = () => {
                     <h4 className="mt-0 mb-0">Grupo 6</h4>
                     <p className="small mb-4">
                       <i className="fas fa-map-marker-alt mr-2 "></i>Where is
-                      my books
+                      my book
                     </p>
                     <br/>
                   </div>

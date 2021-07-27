@@ -85,7 +85,7 @@ export default function Libros(props) {
           <strong>Excelente!</strong> {props.location.exito}
           <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>:null}
-      <div className="px-4 py-3 titulo-pagina">Lista de Libros</div>
+      <div className="px-4 py-3 titulo-pagina">Lista de <span>Libros_</span> </div>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>
@@ -93,10 +93,8 @@ export default function Libros(props) {
         <Buscar buscarPor={buscarPor} enCambioBuscador={enCambioBuscador} de={"Libro"}/>
       </div>
       <div className="mb-3">
-          <label htmlFor="categoria">Elejir categoria: </label>
-          <br />
           <select className="form-select" name="categoria" id="categoria" onChange={enCambioBuscadorGenero}>
-            <option value="">Seleccionar categoria</option>
+            <option value="">Seleccione categoria</option>
             {opcionesCate()}
           </select>
         </div>
@@ -117,7 +115,7 @@ export default function Libros(props) {
           botonAdelante={botonAdelante}
           botonAtras={botonAtras}
         />
-      <Link className="btn btn-primary" to={"/libro/nuevo"}>Agregar</Link>
+      <Link className="btn btn-primary btn-agregar" to={"/libro/nuevo"}>Agregar</Link>
       </div>
       <ul className="list-group">
         <ListLibros libros={filtradoLibroTexto()} />
