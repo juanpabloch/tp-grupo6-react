@@ -43,7 +43,7 @@ export default function Categorias() {
 
   return (
     <div className="py-4 px-4">
-<div className="px-4 py-3 titulo-pagina">Lista categorias</div>
+      <div className="px-4 py-3 titulo-secundario">Lista <span>categorias</span></div>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>
@@ -54,7 +54,7 @@ export default function Categorias() {
 
       <div className="d-flex align-items-center justify-content-between mb-3">
         <Paginacion atras={!pagActual > 0} adelante={!(listado.filter((categoria) => categoria.nombre.includes(buscarPor)).length>pagActual+CANTIDAD_LIBROS_PAGINAS)} botonAdelante={botonAdelante} botonAtras={botonAtras} />
-        <Link className="btn btn-primary" to={"/categoria/nuevo"}>Agregar</Link>
+        <Link className="btn btn-primary btn-agregar" to={"/categoria/nuevo"}>Agregar</Link>
       </div>
 
       <ul className="list-group">

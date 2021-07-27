@@ -5,8 +5,8 @@ export default function Pagination({  botonAdelante,
   return (
      <>
      <div className="btn btn-group">
-     <button className="btn btn-primary" disabled={atras} onClick={() => botonAtras()}>Anterior</button>
-       <button className="btn btn-primary " disabled={adelante}  onClick={() => botonAdelante()}>Siguiente</button>
+        <button className="btn btn-primary btn-anterior" disabled={atras} onClick={() => botonAtras()}>Anterior</button>
+        <button className="btn btn-primary btn-siguiente" disabled={adelante}  onClick={() => botonAdelante()}>Siguiente</button>
      </div>
      </>
   );

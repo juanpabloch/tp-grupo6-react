@@ -19,7 +19,7 @@ const Detalle = () => {
             className="d-inline-block text-truncate"
           >
             {LibrosToMostar.join()
-              ? `Libros: ${LibrosToMostar.join()}`
+              ? `Libros prestados: ${LibrosToMostar.join()}`
               : `Sin libros`}
           </span>
           <Link className="link-volver-libro" to="/personas">

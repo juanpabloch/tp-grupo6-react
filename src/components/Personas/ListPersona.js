@@ -8,7 +8,7 @@ export default function ListPersonas({ personas }) {
         <li key={persona.persona_id} className="list-group-item d-flex justify-content-between align-items-center">
           {persona.nombre}
           <div className="btn btn-group">
-                <Link className="btn btn-outline-info" to={`/personas/detalle/${persona.persona_id}/${persona.nombre}/${persona.apellido}/${persona.alias}/${persona.email}`}>
+                <Link className="btn btn-outline-info btn-ver" to={`/personas/detalle/${persona.persona_id}/${persona.nombre}/${persona.apellido}/${persona.alias}/${persona.email}`}>
                   VER
                 </Link>
             </div>

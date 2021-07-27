@@ -41,7 +41,7 @@ export default function Personas() {
 
   return (
     <div className="py-4 px-4">
-      <div className="px-4 py-3 titulo-pagina">Lista de Personas</div>
+      <div className="px-4 py-3 titulo-secundario">Lista de <span>Personas</span></div>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>
@@ -51,7 +51,7 @@ export default function Personas() {
       </div>
       <div className="d-flex align-items-center justify-content-between mb-3">
         <Paginacion atras={!pagActual > 0} adelante={!(listado.filter((persona) => persona.nombre.includes(buscarPor)).length>pagActual+CANTIDAD_LIBROS_PAGINAS)} botonAdelante={botonAdelante} botonAtras={botonAtras} />
-        <Link className="btn btn-primary" to={"/personas/nuevo"}>Agregar</Link>
+        <Link className="btn btn-primary btn-agregar" to={"/personas/nuevo"}>Agregar</Link>
       </div>
       <ul className="list-group">
         <ListPersona personas={filtradoPersonaInicio()} />

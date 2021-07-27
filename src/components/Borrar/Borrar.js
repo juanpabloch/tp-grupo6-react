@@ -53,7 +53,7 @@ export default function BorrarLibro(props) {
           </div>
         </div>
       ) : null}
-      <div className="alert alert-info" role="alert">
+      <div className="alert alert-info mensaje-seguro" role="alert">
         <h4 className="alert-heading">
           Estas seguro de querer borrar a esta {tipo}?
         </h4>
@@ -63,7 +63,7 @@ export default function BorrarLibro(props) {
           Cancelar
         </Link>
         <button
-          className="btn btn-primary m-3"
+          className="btn btn-primary btn-agregar m-3"
           onClick={() => handleBorrarPersona(parseInt(id))}
         >
           Aceptar
