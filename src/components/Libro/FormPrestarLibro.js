@@ -38,7 +38,8 @@ export default function Formulario(props) {
           type: "PRESTAR_LIBRO",
           payload: serverResponse.data[0],
         });
-
+        props.history.push({
+        pathname:"/",exito:`El libro se ha prestado correctamente`});
     } catch (error) {
         console.log(error.response.data.mensaje);
         divError.current.innerHTML = `
