@@ -16,12 +16,18 @@ export default function Libros(props) {
 
   const [buscarGenero, setbuscarGenero] = useState("");
 
+  const [alerta, setAlerta] = useState(props.location.exito!==undefined?true:false);
+
   let listado = useSelector((state) => state.libros.listado);
 
   const categorias = useSelector((state) => state.categorias.listado);
 
+
   const CANTIDAD_LIBROS_PAGINAS = 3;
 
+  const handleCerrar = () => {
+    setAlerta(false);
+  };
 
   const filtradoLibroGenero = () => {
     if (buscarGenero === "") {
@@ -81,11 +87,11 @@ export default function Libros(props) {
 
   return (
     <div className="py-4 px-4">
-      {props.location.exito!==undefined? <div className="alert alert-success alert-dismissible fade show" role="alert">
-          <strong>Excelente!</strong> {props.location.exito}
-          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>:null}
       <div className="px-4 py-3 titulo-pagina">Lista de <span>Libros_</span> </div>
+      {alerta? <div className="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Excelente!</strong> {props.location.exito}
+          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
+      </div>:null}
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>

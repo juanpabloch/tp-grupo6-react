@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const LibroForm = () => {
+const LibroForm = (props) => {
   const dispatch = useDispatch();
   const categorias = useSelector((state) => state.categorias.listado);
   const personas = useSelector((state) => state.personas.listado);
@@ -13,9 +13,9 @@ const LibroForm = () => {
     descripcion: "empty string",
     categoria: "empty string",
   })
-  const [erroresForm, setErroresForm] = useState({});
+  const [alerta, setAlerta] = useState({mostrar:false,msg:""});
 
-  const divError = useRef()
+  const [erroresForm, setErroresForm] = useState({});
 
   const opcionesCate = () => {
     return categorias.map((item) => (
@@ -30,6 +30,11 @@ const LibroForm = () => {
         {item.nombre}
       </option>
     ));
+  };
+  const handleCerrar = (e) => {
+    const newForm = JSON.parse(JSON.stringify(alerta));
+    newForm.mostrar = false;
+    setAlerta(newForm);
   };
 
   const validate = (nombre, descripcion, categoria) => {
@@ -48,10 +53,6 @@ const LibroForm = () => {
     }
 
     //descripcion
-    if (descripcion.length < 3) {
-      errores.descripcion = "descripcion debe tener mas de 3 caracteres";
-    }
-
     if (descripcion.length > 200) {
       errores.descripcion =
         "la descripción no debe tener mas de 200 caracteres";
@@ -72,14 +73,6 @@ const LibroForm = () => {
   }, [dataFormulario]);
 
 
-  //timer para borrar mensaje despues de 5 seg
-  const timer = ()=>{
-    setTimeout(() => {
-        const div = document.querySelector('#mensajeDivlibro')
-        div.innerHTML = ''
-    }, 5000);
-  }
-
   //on Submit
   const onFormSubmit = async (e) => {
     e.preventDefault();
@@ -97,31 +90,24 @@ const LibroForm = () => {
           type: "AGREGAR_LIBRO",
           payload: response.data[0],
         });
-
-        divError.current.innerHTML = `
-          <div className="alert alert-success alert-dismissible fade show" role="alert">
-              Libro creado con exito!
-              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        `
-        timer()
-        
+        props.history.push({
+          pathname:"/",exito:`Has agregado con exito el libro ${dataFormulario.nombre}`});
     } catch (error) {
-        console.log(error.response.data.mensaje);
-        divError.current.innerHTML = `
-          <div class="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Error!</strong> ${error.response.data.mensaje}
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        `
-        timer()
+      const newState = JSON.parse(JSON.stringify(alerta));
+      newState.mostrar = true;
+      newState.msg = error.response.data.mensaje;
+      setAlerta(newState);
     }
   };
 
   return (
     <div className="container">
       <h1>Crear Nuevo Libro</h1>
-        <div id="mensajeDivlibro" ref={divError}></div>
+        {  alerta.mostrar?<div className="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error! </strong>{alerta.msg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
+          </div>:null
+          }
       <form onSubmit={onFormSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
@@ -175,13 +161,12 @@ const LibroForm = () => {
           </select>
         </div>
 
-        <Link className="btn btn-secondary m-3" to={"/"}>
-            Cancelar
-        </Link>
-
-        <button type="submit" className="btn btn-primary btn-agregar">
+        <div className="d-flex justify-content-center">
+        <Link className="btn btn-secondary m-3" to="/">Cancelar</Link>
+        <button type="submit" className="btn btn-primary m-3 btn-agregar">
           Agregar
         </button>
+        </div>
         
       </form>
     </div>

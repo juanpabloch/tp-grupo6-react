@@ -15,8 +15,8 @@ const VALORES = {
 export default function BorrarLibro(props) {
   const dispatch = useDispatch();
   const { id , tipo} = useParams();
-  const [error, setError] = useState(false);
-  const [msg, setMsg] = useState(false);
+  const [alerta, setAlerta] = useState({error:false,msg:""});
+
 
   const handleBorrarPersona = async (idAborrar) => {
     try {
@@ -24,16 +24,23 @@ export default function BorrarLibro(props) {
         VALORES[tipo][0]+idAborrar
       );
       dispatch({ type: VALORES[tipo][1], payload: idAborrar });
-      props.history.push(VALORES[tipo][2]);
+      props.history.push({
+        pathname:VALORES[tipo][2],exito:`Has borrado con exito ${tipo==="persona" || tipo==="categoria"?"la":"el"} ${tipo}`});
     } catch (error) {
-      setError(true);
-      setMsg(error.response.data.mensaje);
+      const newState = JSON.parse(JSON.stringify(alerta));
+      newState.error = true;
+      newState.msg = error.response.data.mensaje;
+      setAlerta(newState);
     }
   };
-
+  const handleCerrar = (e) => {
+    const newForm = JSON.parse(JSON.stringify(alerta));
+    newForm.error = false;
+    setAlerta(newForm);
+  };
   return (
     <div className="container p-5 ">
-      {error ? (
+      {alerta.error ? (
         <div className="col-sm-6 col-md-6 align-middle">
           <div className="alert alert-danger ">
             <div className="d-flex justify-content-between">
@@ -43,13 +50,13 @@ export default function BorrarLibro(props) {
                 type="button"
                 className="btn btn-primary btn-sm"
                 aria-label="Close"
-                onClick={() => setError(false)}
+                onClick={handleCerrar}
               >
                 ×
               </button>
             </div>
             <hr className="message-inner-separator" />
-            <p>{msg}</p>
+            <p>{alerta.msg}</p>
           </div>
         </div>
       ) : null}

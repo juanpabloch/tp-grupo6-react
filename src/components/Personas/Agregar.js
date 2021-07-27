@@ -6,6 +6,8 @@ import axios from "axios";
 const AgregarPersona = (props) => {
   const dispatch = useDispatch();
 
+  const [alerta, setAlerta] = useState({mostrar:false,msg:""});
+
   const [persona, setPersona] = useState({
     nombre: "",
     apellido: "",
@@ -19,6 +21,12 @@ const AgregarPersona = (props) => {
     const result = validate(persona);
     setErroresForm(result);
   }, [persona]);
+
+  const handleCerrar = (e) => {
+    const newForm = JSON.parse(JSON.stringify(alerta));
+    newForm.mostrar = false;
+    setAlerta(newForm);
+  };
 
   const handleNombre = (e) => {
     const newForm = JSON.parse(JSON.stringify(persona));
@@ -44,22 +52,22 @@ const AgregarPersona = (props) => {
     const errores = {};
     if (!/^([^0-9_@./#&+*-?!><]*)$/gi.test(nombre))
       errores.nombre = "El nombre debe contener caracteres alfabeticos ";
-    if (nombre.length < 3)
+    if (nombre.length < 3 && nombre.length>0)
       errores.nombre = "El nombre debe contener solo caracteres 3 como minimo";
-    if (nombre.length > 70)
+    if (nombre.length > 70 && nombre.length>0)
       errores.nombre = "El nombre no debe tener mas de 70 caracteres";
-    if (!/^([^0-9_@./#&+*-?!><]*)$/gi.test(apellido))
+    if (!/^([^0-9_@./#&+*-?!><]*)$/gi.test(apellido) )
       errores.apellido = "El apellido debe contener caracteres alfabeticos ";
-    if (apellido.length < 3)
+    if (apellido.length < 3 && apellido.length>0)
       errores.apellido =
         "El apellido debe contener solo caracteres 3 como minimo";
-    if (apellido.length > 70)
+    if (apellido.length > 70 && apellido.length>0)
       errores.apellido = "El apellido no debe tener mas de 70 caracteres";
-    if (alias.length < 3)
-      errores.alias = "El alias debe tener al menos 5 caracteres";
-    if (!/^[a-z0-9_.]+$/i.test(alias))
+    if (alias.length < 3 && alias.length>0)
+      errores.alias = "El alias debe tener al menos 3 caracteres";
+    if (!/^[a-z0-9_.]+$/i.test(alias) && alias.length>0)
       errores.alias = "El alias debe contener solo caracteres de la a-z";
-    if (!/^[a-z0-9_.]+@[a-z0-9]+\.[a-z0-9_.]+$/i.test(email))
+    if (!/^[a-z0-9_.]+@[a-z0-9]+\.[a-z0-9_.]+$/i.test(email) && email.length>0)
     errores.email = "El email no es valido";
     return errores;
   };
@@ -74,21 +82,29 @@ const AgregarPersona = (props) => {
         email: persona.email,
         alias: persona.alias,
       });
-
+      console.log(response.data)
       dispatch({
         type: "ADD_PERSONA",
         payload: response.data
       });
-      console.log(response.data)
-      props.history.push("/personas");
+      props.history.push({
+        pathname:"/personas",exito:`Has agregado con exito a ${persona.nombre}`});
     } catch (error) {
-      console.log(error.response.data.mensaje);
+      const newState = JSON.parse(JSON.stringify(alerta));
+      newState.mostrar = true;
+      newState.msg = error.response.data.mensaje;
+      setAlerta(newState);
     }
   };
 
   return (
     <div className="container p-4">
       <h1>Agregar Persona</h1>
+      {  alerta.mostrar?<div className="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>"Error! </strong>{alerta.msg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
+          </div>:null
+          }
       <form onSubmit={onFormSubmit}>
         <div className="mb-3">
           <label htmlFor="nombre" className="form-label">

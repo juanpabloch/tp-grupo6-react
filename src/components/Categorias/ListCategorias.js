@@ -32,6 +32,12 @@ export default function ListCategorias({ categoria }) {
           </Link>
         </li>
       ))}
+            {categoria.length === 0 ? (
+        <div className="alert alert-primary mensaje-seguro" role="alert">
+          <h4 className="alert-heading">Perdona</h4>
+          <p>La categoria que estas tratando de buscar no se encuentra.</p>
+        </div>
+      ) : null}
     </div>
   );
 }

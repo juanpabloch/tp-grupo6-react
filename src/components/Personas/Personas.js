@@ -4,15 +4,19 @@ import Paginacion from "../Paginacion/Paginacion";
 import Buscar from "../Buscar/Buscar";
 import { useSelector } from "react-redux";
 import {Link} from "react-router-dom";
-export default function Personas() {
+export default function Personas(props) {
   const [pagActual, setPagActual] = useState(0);
   const [buscarPor, setBuscarPor] = useState("");
 
+  const [alerta, setAlerta] = useState(props.location.exito!==undefined?true:false);
 
   const listado = useSelector((state) => state.personas.listado);
   
   const CANTIDAD_LIBROS_PAGINAS = 3;
   
+  const handleCerrar = () => {
+    setAlerta(false);
+  };
 
   const filtradoPersonaInicio = () => {
     if (buscarPor.length === 0) {
@@ -42,6 +46,10 @@ export default function Personas() {
   return (
     <div className="py-4 px-4">
       <div className="px-4 py-3 titulo-secundario">Lista de <span>Personas</span></div>
+      {alerta? <div className="alert alert-success alert-dismissible fade show" role="alert">
+          <strong>Excelente!</strong> {props.location.exito}
+          <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"  onClick={handleCerrar}></button>
+      </div>:null}
       <div className="input-group mb-3">
         <div className="input-group-prepend">
           <span className="input-group-text">Buscar</span>

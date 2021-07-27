@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch } from "react-redux";
 import { BrowserRouter as Router,Route } from "react-router-dom"; 
 import axios from 'axios';
@@ -24,7 +24,10 @@ const App = () => {
   
   const dispatch = useDispatch();
 
+  const [alerta, setAlerta] = useState({mostrar:false,msg:""});
+
   useEffect(() => {
+
     const fetchAll = async () => {
       try {
       let respuesta = await axios.get("https://tp-grupo6-api.herokuapp.com/libro");
@@ -36,13 +39,20 @@ const App = () => {
        respuesta = await axios.get("https://tp-grupo6-api.herokuapp.com/persona");
       dispatch({ type: "AGREGAR_LISTADO_PERSONA", listado: respuesta.data });
     } catch (error) {
-      console.log(error.response.data);
+      const newState = JSON.parse(JSON.stringify(alerta));
+      newState.mostrar = true;
+      newState.msg = error.response.data.mensaje;
+      setAlerta(newState);
     }
     };
     fetchAll();
-  }, [dispatch]);
+  }, []);
 
-
+  const handleCerrar = (e) => {
+    const newForm = JSON.parse(JSON.stringify(alerta));
+    newForm.mostrar = false;
+    setAlerta(newForm);
+  };
  
   return (
 
@@ -63,6 +73,11 @@ const App = () => {
                   </div>
                 </div>
               </div> */}
+                 {  alerta.mostrar?<div className="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error! </strong>{alerta.msg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
+                </div>:
+                  
               <Router >
                 <div className="bg-light p-3 text-center navegador">
                   <NavBar/>
@@ -83,6 +98,7 @@ const App = () => {
                 <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
                 <Route exact path="/categoria/delete/:id/:tipo" component={Borrar} />
              </Router>
+              }
             </div>
           </div>
         </div>

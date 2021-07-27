@@ -15,7 +15,7 @@ export default function ListPersonas({ personas }) {
         </li>
       ))}
       {personas.length === 0 ? (
-        <div className="alert alert-primary" role="alert">
+        <div className="alert alert-primary mensaje-seguro" role="alert">
           <h4 className="alert-heading">Perdona</h4>
           <p>La persona que estas tratando de buscar no se encuentra.</p>
         </div>

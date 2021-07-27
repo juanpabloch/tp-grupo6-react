@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -8,8 +8,8 @@ export default function Formulario(props) {
 
   const [erroresForm, setErroresForm] = useState({});
 
+  const [alerta, setAlerta] = useState({mostrar:false,msg:""});
 
-  const divError = useRef();
 
   const dispatch = useDispatch();
 
@@ -25,6 +25,12 @@ export default function Formulario(props) {
     const result = validate(form);
     setErroresForm(result);
   }, [form]);
+
+  const handleCerrar = (e) => {
+    const newForm = JSON.parse(JSON.stringify(alerta));
+    newForm.mostrar = false;
+    setAlerta(newForm);
+  };
 
   const handleNombre = (e) => {
     const newForm = JSON.parse(JSON.stringify(form));
@@ -73,14 +79,13 @@ export default function Formulario(props) {
         form
       );
       dispatch({ type: "MODIFICAR_PERSONA", payload: serverResponse.data });
-      props.history.push("/personas");
+      props.history.push({
+        pathname:"/personas",exito:`Has modificado con exito a ${form.nombre}`});
     } catch (error) {
-      divError.current.innerHTML = `
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>Error!</strong> ${error.response.data.mensaje}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    `
+      const newState = JSON.parse(JSON.stringify(alerta));
+      newState.mostrar = true;
+      newState.msg = error.response.data.mensaje;
+      setAlerta(newState);
     }
   };
 
@@ -88,7 +93,11 @@ export default function Formulario(props) {
     <>
       <div className="container p-5">
         <h1>Modificar persona</h1>
-        <div ref={divError}></div>
+        {  alerta.mostrar?<div className="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error! </strong>{alerta.msg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
+          </div>:null
+          }
         <form onSubmit={onFormSubmit}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
