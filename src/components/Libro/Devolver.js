@@ -20,7 +20,7 @@ export default function Devolver({id,disable}) {
 
     return (
         <>
-              <button className="btn btn-outline-info "
+              <button className="btn btn-outline-info btn-devolver"
               style={{marginRight: '10px'}}
                 onClick={() => {
                   handleDevolverLibro(id);

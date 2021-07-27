@@ -17,7 +17,7 @@ export default function ListLibro({ libros }) {
       ))}
 
       {libros.length === 0 ? (
-        <div className="alert alert-primary" role="alert">
+        <div className="alert alert-primary mensaje-seguro" role="alert">
           <h4 className="alert-heading">Perdona</h4>
           <p>El libro que estas tratando de buscar no se encuentra.</p>
         </div>

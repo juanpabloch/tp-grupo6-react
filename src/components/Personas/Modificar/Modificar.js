@@ -160,7 +160,7 @@ export default function Formulario(props) {
             <Link className="btn btn-secondary m-3" to={"/personas"}>
               Cancelar
             </Link>
-            <button type="submit" className="btn btn-primary m-3">
+            <button type="submit" className="btn btn-primary m-3 btn-agregar">
               Aceptar
             </button>
           </div>
