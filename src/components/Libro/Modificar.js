@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 export default function Formulario(props) {
   const { id, nombre, categoria, persona, descripcion } = useParams();
   const [erroresForm, setErroresForm] = useState({});
-
+  const [cate, setCategoria] = useState('')
 
   const divError = useRef()
 
@@ -18,6 +18,21 @@ export default function Formulario(props) {
     persona_id: persona === "null" ? null : persona,
     categoria_id: categoria,
   });
+
+  
+  useEffect(() => {
+    const result = validate(form);
+    setErroresForm(result);
+  }, [form]);
+
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+        const categoria = await axios.get(`https://tp-grupo6-api.herokuapp.com/categoria/${form.categoria_id}`)
+        setCategoria(categoria.data[0].nombre)
+    }
+    fetchData()
+}, [])
 
   const handleDescripcion = (e) => {
     const newForm = JSON.parse(JSON.stringify(form));
@@ -40,11 +55,6 @@ export default function Formulario(props) {
 
     return errores;
   };
-
-  useEffect(() => {
-    const result = validate(form);
-    setErroresForm(result);
-  }, [form]);
 
 
   const onFormSubmit = async (e) => {
@@ -85,9 +95,6 @@ export default function Formulario(props) {
             id="exampleInputEmail1"
             disabled={true}
           />
-          <div className="form-text" style={{ color: "red" }}>
-            {erroresForm.nombre}
-          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
@@ -99,6 +106,34 @@ export default function Formulario(props) {
           <div className="form-text" style={{ color: "red" }}>
             {erroresForm.descripcion}
           </div>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Categoria
+          </label>
+          <input
+            required
+            value={cate}
+            name="nombre"
+            type="text"
+            className="form-control"
+            id="exampleInputEmail1"
+            disabled={true}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Estado
+          </label>
+          <input
+            required
+            value={form.persona_id?"PRESTADO":"BIBLOTECA"}
+            name="nombre"
+            type="text"
+            className="form-control"
+            id="exampleInputEmail1"
+            disabled={true}
+          />
         </div>
         <div className="d-flex justify-content-center">
           <Link className="btn btn-secondary m-3" to={"/"}>
