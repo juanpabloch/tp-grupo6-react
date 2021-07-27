@@ -87,7 +87,7 @@ export default function Libros(props) {
 
   return (
     <div className="py-4 px-4">
-      <div className="px-4 py-3 titulo-pagina">Lista de <span>Libros_</span> </div>
+      <div className="px-4 py-3 titulo-pagina">Lista de <span>Libros </span> </div>
       {alerta? <div className="alert alert-success alert-dismissible fade show" role="alert">
           <strong>Excelente!</strong> {props.location.exito}
           <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>

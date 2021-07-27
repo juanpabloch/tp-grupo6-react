@@ -137,7 +137,7 @@ export default function Formulario(props) {
           </label>
           <input
             required
-            value={form.persona_id?"PRESTADO":"BIBLOTECA"}
+            value={form.persona_id?"PRESTADO":"BIBLIOTECA"}
             name="nombre"
             type="text"
             className="form-control"
