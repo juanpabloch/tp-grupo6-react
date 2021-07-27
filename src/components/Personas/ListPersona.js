@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 export default function ListPersonas({ personas }) {
-  //:id/:nombre/:apellido/:alias/:email
+
   return (
     <div className="row">
       {personas.map((persona) => (

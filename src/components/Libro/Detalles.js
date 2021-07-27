@@ -12,11 +12,15 @@ const Detalle = ()=>{
 
     useEffect(()=>{
         const fetchData = async()=>{
+            try{
             const response = await axios.get(`https://tp-grupo6-api.herokuapp.com/libro/${id}`)
             setLibro(response.data[0])
             const categoria = await axios.get(`https://tp-grupo6-api.herokuapp.com/categoria/${response.data[0].categoria_id}`)
             setCategoria(categoria.data[0].nombre)
-        }
+        } catch (error) {
+            console.log(error.response.data);
+          }
+        };
         fetchData()
     }, [])
 

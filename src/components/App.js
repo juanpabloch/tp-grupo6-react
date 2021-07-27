@@ -26,6 +26,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchAll = async () => {
+      try {
       let respuesta = await axios.get("https://tp-grupo6-api.herokuapp.com/libro");
       dispatch({ type: "AGREGAR_LISTADO_LIBROS", listado: respuesta.data });
        respuesta = await axios.get(
@@ -34,10 +35,15 @@ const App = () => {
       dispatch({ type: "AGREGAR_LISTADO_CATEGORIA", listado: respuesta.data });
        respuesta = await axios.get("https://tp-grupo6-api.herokuapp.com/persona");
       dispatch({ type: "AGREGAR_LISTADO_PERSONA", listado: respuesta.data });
+    } catch (error) {
+      console.log(error.response.data);
+    }
     };
     fetchAll();
   }, [dispatch]);
 
+
+ 
   return (
 
     <div className="bg">

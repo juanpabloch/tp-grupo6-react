@@ -12,6 +12,21 @@ const Agregar = (props) => {
 
   const divError = useRef()
 
+  useEffect(() => {
+    const result = validate(value);
+    setErroresForm(result);
+  }, [value]);
+
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    createCategoria(value);
+    setValue("");
+  };
+
+  const onInputChange = (e) => {
+    setValue(e.target.value);
+  };
+
   const validate = (nombre) => {
     const errores = {};
 
@@ -34,22 +49,6 @@ const Agregar = (props) => {
 
     return errores;
   };
-
-  useEffect(() => {
-    const result = validate(value);
-    setErroresForm(result);
-  }, [value]);
-
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    createCategoria(value);
-    setValue("");
-  };
-
-  const onInputChange = (e) => {
-    setValue(e.target.value);
-  };
-
   const createCategoria = async (categoria) => {
     try {
       const response = await axios.post(

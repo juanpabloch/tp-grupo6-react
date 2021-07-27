@@ -28,8 +28,12 @@ export default function Formulario(props) {
 
   useEffect(()=>{
     const fetchData = async()=>{
+      try{
         const categoria = await axios.get(`https://tp-grupo6-api.herokuapp.com/categoria/${form.categoria_id}`)
         setCategoria(categoria.data[0].nombre)
+      } catch (error) {
+        console.log(error.response.data);
+      }
     }
     fetchData()
 }, [])
