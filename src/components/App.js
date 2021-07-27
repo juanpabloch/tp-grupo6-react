@@ -11,6 +11,8 @@ import Libros from "./Libro/Libros";
 import FormularioNuevoLibro from './Libro/FormularioNuevoLibro'
 import ModificarLibro from "./Libro/Modificar";
 import DetalleLibro from "./Libro/Detalles";
+import FormPrestarLibro from './Libro/FormPrestarLibro';
+import Devolver from './Libro/Devolver';
 //import personas
 import Personas from "./Personas/Personas";
 import ModificarPersona from "./Personas/Modificar/Modificar";
@@ -87,7 +89,8 @@ const App = () => {
                 <Route exact path="/delete/:id/:tipo" component={Borrar} />
                 <Route exact path="/libro/:id/detalle" component={DetalleLibro} />
                 <Route exact path="/libro/nuevo" component={FormularioNuevoLibro} />
-
+                <Route exact path="/libro/devolver/:id" component={Devolver} />
+                <Route exact path="/prestarlibro/:id/:nombre" component={FormPrestarLibro}/>
                 <Route exact path="/personas" component={Personas} />
                 <Route exact path="/personas/modificar/:id/:nombre/:apellido/:alias/:email" component={ModificarPersona} />
                 <Route exact path="/personas/delete/:id/:tipo" component={Borrar} />
