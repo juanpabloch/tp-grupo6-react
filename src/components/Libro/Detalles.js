@@ -51,7 +51,7 @@ const Detalle = ()=>{
                     <p className="card-text">{`Genero: ${categoria}`}</p>
                    <Link className={libro.persona_id === null?"btn btn-outline-danger ":"btn btn-outline-danger disabled"}  to={`/delete/${libro.libro_id}/libro/`} style={{marginRight: '10px'}}>Borrar</Link>
                    <Devolver alerta={alerta} setAlerta={setAlerta} disable={libro.persona_id !== null ?false:true} id={libro.libro_id}/>
-                   <Link className={libro.persona_id === null?"btn btn-outline-danger ":"btn btn-outline-danger disabled"}  to={`/prestarlibro/${libro.libro_id}/${libro.nombre}`} style={{marginRight: '10px'}}>Prestarrrr</Link>
+                   <Link className={libro.persona_id === null?"btn btn-outline-danger ":"btn btn-outline-danger disabled"}  to={`/prestarlibro/${libro.libro_id}/${libro.nombre}`} style={{marginRight: '10px'}}>Prestar</Link>
                    <Link className="btn btn-outline-dark" to={`/modificar-libro/${libro.libro_id}/${libro.nombre}/${libro.categoria_id}/${libro.persona_id}/${libro.descripcion}`}>Modificar</Link>
 
                 </div>

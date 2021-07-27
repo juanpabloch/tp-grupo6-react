@@ -74,9 +74,9 @@ export default function Formulario(props) {
               disabled={true}
             />
            <div className="mb-3">
-                <label htmlFor="persona">Elejir las personas que retira el libro: </label>
                 <br></br>
                 <select className="form-select"  name="persona" id="persona" onChange={idPersona}>
+                <option value="">Seleccionar la persona que retira el libro</option>
                      {opcionesPers()}
                </select>
             </div>
