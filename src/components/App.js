@@ -42,10 +42,10 @@ const App = () => {
 
     <div className="bg">
       <div className="container">
-        <div className="row py-3 px-2">
+        <div className="row py-3 px-2 flex-container">
           <div className="col-md-10 mx-auto">
             <div className="bg-white shadow rounded overflow-hidden Fondo">
-              <div className="px-4 pt-0 pb-4 cover header_principal">
+              {/* <div className="px-4 pt-0 pb-4 cover header_principal">
                 <div className="media align-items-end profile-head">
                   <div className="media-body mb-2 text-white">
                     <h4 className="mt-0 mb-0">Grupo 6</h4>
@@ -56,9 +56,9 @@ const App = () => {
                     <br/>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <Router >
-                <div className="bg-light p-3 d-flex justify-content-end text-center navegador">
+                <div className="bg-light p-3 text-center navegador">
                   <NavBar/>
                 </div>
                 <Route exact path="/" component={Libros} />

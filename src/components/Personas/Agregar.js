@@ -87,7 +87,8 @@ const AgregarPersona = (props) => {
   };
 
   return (
-    <div className="container p-5">
+    <div className="container p-4">
+      <h1>Agregar Persona</h1>
       <form onSubmit={onFormSubmit}>
         <div className="mb-3">
           <label htmlFor="nombre" className="form-label">
@@ -157,7 +158,7 @@ const AgregarPersona = (props) => {
           <Link className="btn btn-secondary m-3" to={"/"}>
             Cancelar
           </Link>
-          <button type="submit" className="btn btn-primary m-3">
+          <button type="submit" className="btn btn-primary m-3 btn-agregar">
             Agregar
           </button>
         </div>

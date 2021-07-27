@@ -80,9 +80,7 @@ const Agregar = (props) => {
       <form onSubmit={onFormSubmit}>
       <div ref={divError}></div>
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label">
-            Nueva Categoria
-          </label>
+          <h1>Nueva Categoria</h1>
           <input
             type="text"
             className="form-control"
@@ -96,8 +94,8 @@ const Agregar = (props) => {
         </div>
         <div className="d-flex justify-content-center">
         <Link className="btn btn-secondary m-3" to="/categorias">Cancelar</Link>
-        <button type="submit" className="btn btn-primary m-3">
-          Aceptar
+        <button type="submit" className="btn btn-primary m-3 btn-agregar">
+          Agregar
         </button>
         </div>
       </form>

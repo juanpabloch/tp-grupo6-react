@@ -175,12 +175,14 @@ const LibroForm = () => {
           </select>
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Crear
-        </button>
         <Link className="btn btn-secondary m-3" to={"/"}>
             Cancelar
         </Link>
+
+        <button type="submit" className="btn btn-primary btn-agregar">
+          Agregar
+        </button>
+        
       </form>
     </div>
   );
