@@ -19,19 +19,19 @@ export default function ListCategorias({ categoria }) {
           className="list-group-item d-flex align-items-center justify-content-between"
         >
           {cate.nombre}
-          <div className="btn btn-group">              
-          <Link className="btn btn-outline-dark" to={`/categoria/modificar-categoria/${cate.categoria_id}/${cate.nombre}`}>Modificar</Link>
-          <Link
-            className={
-              !categoriasUsadas.includes(cate.categoria_id)
-                ? "btn btn-outline-danger"
-                : "btn btn-outline-danger disabled"
-            }
-            to={`/categoria/delete/${cate.categoria_id}/categoria`}
-            style={{ marginRight: "10px" }}
-          >
-            Borrar
-          </Link>
+          <div className="btn btn-group libros-detalles-btn">              
+            <Link className="btn btn-outline-dark" to={`/categoria/modificar-categoria/${cate.categoria_id}/${cate.nombre}`}>Modificar</Link>
+            <Link
+              className={
+                !categoriasUsadas.includes(cate.categoria_id)
+                  ? "btn btn-outline-danger"
+                  : "btn btn-outline-danger disabled"
+              }
+              to={`/categoria/delete/${cate.categoria_id}/categoria`}
+              style={{ marginRight: "10px" }}
+            >
+              Borrar
+            </Link>
           </div>
         </li>
       ))}

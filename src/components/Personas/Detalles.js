@@ -26,7 +26,7 @@ const Detalle = () => {
             Volver
           </Link>
         </div>
-        <div className="card-body">
+        <div className="card-body libros-detalles-btn">
           <h3 className="card-title">{nombre}</h3>
           <p className="card-text">{apellido}</p>
           <p className="card-text">{alias}</p>

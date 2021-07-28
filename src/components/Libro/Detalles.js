@@ -45,7 +45,7 @@ const Detalle = ()=>{
                     }
                     <Link className="link-volver-libro" to="/">Volver</Link>
                 </div>
-                <div className="card-body">
+                <div className="card-body libros-detalles-btn">
                     <h3 className="card-title">{libro.nombre}</h3>
                     <p className="card-text">{libro.descripcion}</p>
                     <p className="card-text">{`Genero: ${categoria}`}</p>

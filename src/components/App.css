@@ -148,6 +148,11 @@ a, .btn{
   font-weight: 600;
 }
 
+.libros-detalles-btn .btn{
+  width: 110px;
+}
+
+
 /* botones */
 .btn-ver{
   border: none;
@@ -227,7 +232,7 @@ a, .btn{
     color: var(--naranja);
   }
 
-  .btn-anterior{
+  .btn-anterior, .btn-anterior:checked{
     background-color: var(--negro);
     border-color: var(--negro);
     color: #fff;
@@ -257,6 +262,11 @@ a, .btn{
     color: #fff;
   }
 
+  .btn-anterior:focus, .btn-siguiente:focus{
+    outline: none;
+    box-shadow: none;
+  }
+
   /* mensajes */
   .mensaje-seguro{
     background-color: rgba(255, 255, 255, 0.609);
@@ -280,6 +290,11 @@ a, .btn{
 @media screen and (max-width: 700px) {
   :root{
     font-size: 13px;
+  }
+
+  .libros-detalles-btn .btn{
+    width: 90px;
+    margin: 5px 0;
   }
 
   .nav-bar-links a{
