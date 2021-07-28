@@ -1,15 +1,14 @@
-import React,{useState,useEffect} from 'react'
+import React from 'react'
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 export default function Devolver({id,disable,setAlerta,alerta}) {
     const dispatch = useDispatch();
-    const [dis, setDis] = useState(disable);
+    const history = useHistory();
 
-  useEffect(() => {
-      setDis(disable);
-  }, [disable])
 
     const handleDevolverLibro = async (Id) => {
+
         try {
           await axios.put(
             `https://tp-grupo6-api.herokuapp.com/libro/devolver/${Id}`
@@ -20,7 +19,8 @@ export default function Devolver({id,disable,setAlerta,alerta}) {
           newState.msg = "Has devuelto el libro correctamente.";
           newState.tipo = 0;
           setAlerta(newState);
-          setDis(true);
+          history.push({
+            pathname:"/",exito:`Has devuelto con exito el libro`});
         } catch (error) {
           const newState = JSON.parse(JSON.stringify(alerta));
           newState.mostrar = true;
@@ -38,7 +38,7 @@ export default function Devolver({id,disable,setAlerta,alerta}) {
                 onClick={() => {
                   handleDevolverLibro(id);
                 }}
-                disabled={dis}
+                disabled={disable}
               >
                 Devolver
               </button>

@@ -22,6 +22,12 @@ function reducerLibro(state = estadoInicial, action) {
       );
       nuevoState.listado[index].persona_id = null;
       return nuevoState;
+      case "PRESTAR_LIBRO":
+        index = nuevoState.listado.findIndex(
+            (obj) => obj.libro_id === parseInt(action.payload[0])
+          );
+          nuevoState.listado[index].persona_id = action.payload[1];
+          return nuevoState;
     case "MODIFICAR_DESCRIPCION":
       index = nuevoState.listado.findIndex(
         (obj) => obj.libro_id === action.payload[0].libro_id
