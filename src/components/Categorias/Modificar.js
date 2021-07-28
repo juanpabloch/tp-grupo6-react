@@ -57,8 +57,7 @@ export default function Formulario(props) {
   const onFormSubmit = async (e) => {
     e.preventDefault();
     try {
-       // const serverResponse = await axios.put(  `https://tp-grupo6-api.herokuapp.com/categoria/${id}`, form);
-        // throw new Error("EL ID NO EXITE "); error backend
+      await axios.put(  `https://tp-grupo6-api.herokuapp.com/categoria/${id}`, form);
       dispatch({ type: "MODIFICAR_CATEGORIA", payload: [parseInt(id),form.nombre] });
       props.history.push({
         pathname:"/categorias",exito:`Has modificado con exito la categoria a ${form.nombre}`});
@@ -66,7 +65,6 @@ export default function Formulario(props) {
       const newState = JSON.parse(JSON.stringify(alerta));
       newState.mostrar = true;
       newState.msg = error.response.data.mensaje;
-      //newState.msg = error.message;
       setAlerta(newState);
     }
   };

@@ -60,6 +60,10 @@ const App = () => {
 
     <div className="bg">
       <div className="container">
+      {  alerta.mostrar?<div className="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error! </strong>{alerta.msg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
+                </div>:
         <div className="row py-3 px-2 flex-container">
           <div className="col-md-10 mx-auto">
             <div className="bg-white shadow rounded overflow-hidden Fondo">
@@ -75,10 +79,7 @@ const App = () => {
                   </div>
                 </div>
               </div> */}
-                 {  alerta.mostrar?<div className="alert alert-danger alert-dismissible fade show" role="alert">
-              <strong>Error! </strong>{alerta.msg}
-              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
-                </div>:
+                
                   
               <Router >
                 <div className="bg-light p-3 text-center navegador">
@@ -102,10 +103,11 @@ const App = () => {
                 <Route exact path="/categoria/modificar-categoria/:id/:nombre" component={ModificarCategoria} />
                 <Route exact path="/categoria/delete/:id/:tipo" component={Borrar} />
              </Router>
-              }
+            
             </div>
           </div>
         </div>
+                }
       </div>
     </div>
 
