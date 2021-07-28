@@ -61,7 +61,7 @@ export default function Formulario(props) {
         // throw new Error("EL ID NO EXITE "); error backend
       dispatch({ type: "MODIFICAR_CATEGORIA", payload: [parseInt(id),form.nombre] });
       props.history.push({
-        pathname:"/categorias",exito:`Has modificado con exito a ${form.nombre}`});
+        pathname:"/categorias",exito:`Has modificado con exito la categoria a ${form.nombre}`});
     } catch (error) {
       const newState = JSON.parse(JSON.stringify(alerta));
       newState.mostrar = true;

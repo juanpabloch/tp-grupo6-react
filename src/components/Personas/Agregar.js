@@ -146,7 +146,7 @@ const AgregarPersona = (props) => {
             required
             onChange={handleAlias}
             name="email"
-            type="text"
+            type="email"
             id="email"
             className="form-control"
           />

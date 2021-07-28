@@ -5,7 +5,7 @@ export default function Buscar({  buscarPor,
   return (
      <>
         <input
-          type="text"
+          type="search"
           className="form-control"
           aria-label="Amount (to the nearest dollar)"
           placeholder={`Escriba el nombre de ${de} que desea buscar...`}

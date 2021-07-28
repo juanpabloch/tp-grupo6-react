@@ -158,7 +158,7 @@ export default function Formulario(props) {
               required
               value={form.email}
               name="nombre"
-              type="text"
+              type="email"
               className="form-control"
               id="exampleInputEmail1"
               disabled={true}
