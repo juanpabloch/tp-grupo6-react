@@ -13,6 +13,12 @@ function reducerCategorias(state = estadoInicial,action) {
       case 'REMOVER_CATEGORIA':
           nuevoState.listado = nuevoState.listado.filter(item=>item.categoria_id !== action.payload)
           return nuevoState
+      case "MODIFICAR_CATEGORIA":
+        const  index = nuevoState.listado.findIndex(
+                (obj) => obj.categoria_id === parseInt(action.payload[0])
+              );
+              nuevoState.listado[index].nombre = action.payload[1];
+              return nuevoState;
       default:
         return state;
     }

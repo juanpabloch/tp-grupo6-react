@@ -21,7 +21,7 @@ import DetallePersona from "./Personas/Detalles";
 //import categorias
 import Categorias from "./Categorias/Categorias";
 import FormularioNuevaCategoria from './Categorias/FormularioNuevaCategoria'
-
+import ModificarCategoria from './Categorias/Modificar'
 const App = () => {
   
   const dispatch = useDispatch();
@@ -99,6 +99,7 @@ const App = () => {
 
                 <Route exact path="/categorias" component={Categorias} />
                 <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
+                <Route exact path="/categoria/modificar-categoria/:id/:nombre" component={ModificarCategoria} />
                 <Route exact path="/categoria/delete/:id/:tipo" component={Borrar} />
              </Router>
               }
