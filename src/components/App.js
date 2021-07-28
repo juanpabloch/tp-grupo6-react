@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from "react";
 import { useDispatch } from "react-redux";
-import { BrowserRouter as Router,Route } from "react-router-dom"; 
+import { BrowserRouter as Router,Route,Switch } from "react-router-dom"; 
 import axios from 'axios';
 import "./App.css";
 
@@ -22,6 +22,8 @@ import DetallePersona from "./Personas/Detalles";
 import Categorias from "./Categorias/Categorias";
 import FormularioNuevaCategoria from './Categorias/FormularioNuevaCategoria'
 import ModificarCategoria from './Categorias/Modificar'
+
+import NotFound from './NotFound/NotFound'
 const App = () => {
   
   const dispatch = useDispatch();
@@ -85,6 +87,7 @@ const App = () => {
                 <div className="bg-light p-3 text-center navegador">
                   <NavBar/>
                 </div>
+                <Switch>
                 <Route exact path="/" component={Libros} />
                 <Route exact path="/modificar-libro/:id/:nombre/:categoria/:persona/:descripcion"  component={ModificarLibro} />
                 <Route exact path="/delete/:id/:tipo" component={Borrar} />
@@ -102,6 +105,8 @@ const App = () => {
                 <Route exact path="/categoria/nuevo" component={FormularioNuevaCategoria} />
                 <Route exact path="/categoria/modificar-categoria/:id/:nombre" component={ModificarCategoria} />
                 <Route exact path="/categoria/delete/:id/:tipo" component={Borrar} />
+                <Route  component={NotFound} />
+                </Switch>
              </Router>
             
             </div>

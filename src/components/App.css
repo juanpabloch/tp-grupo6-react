@@ -205,7 +205,7 @@ a, .btn{
   border-color: var(--naranja);
 }
 
-  .btn-agregar:hover{
+  .btn-agregar:hover,.btn-agregar:focus{
     background-color: var(--naranja-palido);
     border-color: var(--naranja-palido);
   }
