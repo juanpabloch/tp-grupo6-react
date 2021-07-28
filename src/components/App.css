@@ -1,6 +1,16 @@
-
+  :root{
+    --rosa: #fb6868;
+    --amarillo: #f8e29a;
+    --azul: #2c54a5;
+    --verde: #79c0c8;
+    --negro: #3B3B4D;
+    --gris: #775D5D;
+    --naranja: #D35D56;
+    --naranja-palido: #d47a75;
+  }
+  
   .bg {
-    background-image: url("https://i.imgur.com/NaOUrSM.jpg") ;
+    background-image: url("https://i.imgur.com/NaOUrSM.jpg");
     min-height: 100vh;
     display: flex ;
     background-position: center;
@@ -12,15 +22,330 @@
 }
 
 .cover {
-    background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
+    /* background-image: url(https://images.unsplash.com/photo-1530305408560-82d13781b33a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80);
     background-size: cover;
-    background-repeat: no-repeat
+    background-repeat: no-repeat */
+    background-color: #41393cc0;
 }
 
 body {
     background: #654ea3;
     background: linear-gradient(to right, #e96443, #904e95);
     min-height: 100vh;
-    overflow-x: hidden
+    overflow-x: hidden;
+    color: var(--negro);
+    font-family: 'Montserrat', sans-serif;
 }
 
+h1{
+  line-height: 2;
+}
+
+a, .btn{
+  transition: all 0.3s ease;
+}
+.link-volver-libro:hover{
+  color: var(--negro);
+  transform: translateX(-5px);
+}
+
+/*header*/
+.header_principal{
+  height: 110px;
+}
+.profile-head {
+  transform: translateY(3rem);
+}
+
+
+/* nav-bar */
+.navegador{
+  height: auto;
+}
+.nav-bar-principal{
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  
+}
+.nav-bar-links{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-bar-links a{
+  margin: 0 10px;
+}
+
+.nav-bar-flex{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo{
+  text-align: left;
+  line-height: 1;
+  margin-left: 15px;
+}
+  .logo p{
+    margin: 0;
+  }
+  .logo h4{
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 700;
+    font-style: italic;
+  }
+
+/*pagina principal*/
+.titulo-pagina{
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+  .titulo-pagina span{
+    font-size: 4.5rem;
+    font-weight: 700;
+  }
+
+.titulo-secundario{
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+  .titulo-secundario span{
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+
+  .list-group{
+    width: 98%;
+    margin: 0 auto; 
+  }
+
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.719) !important;
+}
+
+.prestado-badge{
+  background-color: var(--gris) !important;
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* detalles libro */
+.link-volver-libro{
+  text-decoration: none;
+  color: var(--naranja);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.libros-detalles-btn .btn{
+  width: 110px;
+}
+
+
+/* botones */
+.btn-ver{
+  border: none;
+  color: var(--naranja);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+  .btn-ver:hover{
+    background-color: transparent;
+    border: none;
+    color: var(--negro);
+    transform: translateX(5px);
+  }
+
+
+.btn-primary{
+  border-color: var(--azul);
+  background-color: var(--azul);
+  color: #fff;
+}
+  .btn-primary:disabled{
+    border-color: none;
+    background-color: none;
+    color: var(--verde);
+  }
+  .btn-primary:focus{
+    outline: none;
+    box-shadow: none;
+  }
+
+.btn-outline-danger{
+  border-color: var(--rosa);
+  color: var(--rosa);
+}
+  .btn-outline-danger:hover{
+    border-color: var(--rosa);
+    background-color: var(--rosa);
+  }
+  .btn-outline-danger.disabled{
+    background-color: #e7e7e7;
+  }
+  
+.btn-outline-dark{
+  border-color: var(--negro);
+  color: var(--negro);
+}
+  .btn-outline-dark:hover{
+    border-color: var(--gris);
+    color: #fff;
+    background-color: var(--gris);
+  }
+
+.btn-agregar{
+  background-color: var(--naranja);
+  border-color: var(--naranja);
+}
+
+  .btn-agregar:hover,.btn-agregar:focus{
+    background-color: var(--naranja-palido);
+    border-color: var(--naranja-palido);
+  }
+
+  .btn-devolver{
+    background-color: var(--naranja);
+    border-color: var(--naranja);
+    color: #fff;
+  }
+  .btn-devolver:hover{
+    background-color: transparent;
+    border-color: var(--naranja);
+    color: var(--naranja);
+  }
+
+  .btn-devolver:disabled{
+    background-color: transparent;
+    border-color: var(--naranja);
+    color: var(--naranja);
+  }
+
+  .btn-anterior, .btn-anterior:checked{
+    background-color: var(--negro);
+    border-color: var(--negro);
+    color: #fff;
+  }
+  .btn-anterior:hover{
+    background-color: #656579;
+    border-color: #656579;
+  }
+  .btn-anterior:disabled{
+    background-color: var(--negro);
+    border-color: var(--negro);
+    color: #fff;
+  }
+
+  .btn-siguiente{
+    background-color: var(--gris);
+    border-color: var(--gris);
+    color: #fff;
+  }
+  .btn-siguiente:hover{
+    background-color: #997777;
+    border-color: #997777;
+  }
+  .btn-siguiente:disabled{
+    background-color: var(--gris);
+    border-color: var(--gris);
+    color: #fff;
+  }
+
+  .btn-anterior:focus, .btn-siguiente:focus{
+    outline: none;
+    box-shadow: none;
+  }
+
+  /* mensajes */
+  .mensaje-seguro{
+    background-color: rgba(255, 255, 255, 0.609);
+    border: none;
+  }
+    .mensaje-seguro h4{
+      color: var(--naranja);
+      font-size: 2rem;
+    }
+    .mensaje-seguro p{
+      color: var(--naranja);
+      font-size: 1.3rem;
+    }
+
+@media screen and (max-width: 1000px) {
+    :root{
+      font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+  :root{
+    font-size: 13px;
+  }
+
+  .libros-detalles-btn .btn{
+    width: 90px;
+    margin: 5px 0;
+  }
+
+  .nav-bar-links a{
+    margin: 0 6px;
+  }
+
+  .titulo-pagina{
+    font-size: 3rem;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+    .titulo-pagina span{
+      font-size: 4rem;
+    }
+
+    .titulo-secundario{
+      font-size: 2rem;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+      .titulo-secundario span{
+        font-size: 3rem;
+      }
+}
+
+@media screen and (max-width: 500px) {
+    /* nav-bar */
+    .navegador{
+      height: auto;
+    }
+    .nav-bar-principal{
+      margin: 0 auto;
+    }
+
+    .nav-bar-flex{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .logo{
+      margin-bottom: 15px;
+    }
+      .logo p{
+        margin: 0;
+      }
+      .logo h4{
+        margin: 0;
+        line-height: 1.5;
+        font-weight: 700;
+        font-style: normal;
+      }
+}

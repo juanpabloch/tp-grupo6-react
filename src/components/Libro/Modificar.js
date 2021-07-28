@@ -1,13 +1,13 @@
-import React, { useState,useRef,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 export default function Formulario(props) {
   const { id, nombre, categoria, persona, descripcion } = useParams();
   const [erroresForm, setErroresForm] = useState({});
+  const [cate, setCategoria] = useState('')
 
-
-  const divError = useRef()
+  const [alerta, setAlerta] = useState({mostrar:false,msg:""});
 
   const dispatch = useDispatch();
 
@@ -19,19 +19,41 @@ export default function Formulario(props) {
     categoria_id: categoria,
   });
 
+  
+  useEffect(() => {
+    const result = validate(form);
+    setErroresForm(result);
+  }, [form]);
+
+
+  useEffect(()=>{
+    const fetchData = async()=>{
+      try{
+        const categoria = await axios.get(`https://tp-grupo6-api.herokuapp.com/categoria/${form.categoria_id}`)
+        setCategoria(categoria.data[0].nombre)
+      } catch (error) {
+        const newState = JSON.parse(JSON.stringify(alerta));
+        newState.mostrar = true;
+        newState.msg = error.response.data.mensaje;
+        setAlerta(newState);
+      }
+    }
+    fetchData()
+}, [])
+
   const handleDescripcion = (e) => {
     const newForm = JSON.parse(JSON.stringify(form));
     newForm.descripcion = e.target.value;
     setForm(newForm);
   };
-
+  const handleCerrar = (e) => {
+    const newForm = JSON.parse(JSON.stringify(alerta));
+    newForm.mostrar = false;
+    setAlerta(newForm);
+  };
 
   const validate = ({descripcion}) => {
     const errores = {};
-    //descripcion
-    if (descripcion.length < 3) {
-      errores.descripcion = "Descripcion debe tener mas de 3 caracteres";
-    }
 
     if (descripcion.length > 200) {
       errores.descripcion =
@@ -40,11 +62,6 @@ export default function Formulario(props) {
 
     return errores;
   };
-
-  useEffect(() => {
-    const result = validate(form);
-    setErroresForm(result);
-  }, [form]);
 
 
   const onFormSubmit = async (e) => {
@@ -55,14 +72,13 @@ export default function Formulario(props) {
         form
       );
       dispatch({ type: "MODIFICAR_DESCRIPCION", payload: serverResponse.data });
-      props.history.push('/');
+      props.history.push({
+        pathname:"/",exito:`Has modificado con exito el libro: ${form.nombre}`});
     } catch (error) {
-      divError.current.innerHTML = `
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-          <strong>Error!</strong> ${error.response.data.mensaje}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    `
+      const newState = JSON.parse(JSON.stringify(alerta));
+      newState.mostrar = true;
+      newState.msg = error.response.data.mensaje;
+      setAlerta(newState);
     }
   };
 
@@ -70,7 +86,11 @@ export default function Formulario(props) {
     <>
 <div className="container p-5">
       <h1>Modificar Libro</h1>
-        <div ref={divError}></div>
+      {  alerta.mostrar?<div className="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>Error! </strong>{alerta.msg}
+              <button type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close" onClick={handleCerrar}></button>
+          </div>:null
+          }
       <form onSubmit={onFormSubmit}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
@@ -85,9 +105,6 @@ export default function Formulario(props) {
             id="exampleInputEmail1"
             disabled={true}
           />
-          <div className="form-text" style={{ color: "red" }}>
-            {erroresForm.nombre}
-          </div>
         </div>
         <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
@@ -100,11 +117,39 @@ export default function Formulario(props) {
             {erroresForm.descripcion}
           </div>
         </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Categoria
+          </label>
+          <input
+            required
+            value={cate}
+            name="nombre"
+            type="text"
+            className="form-control"
+            id="exampleInputEmail1"
+            disabled={true}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">
+            Estado
+          </label>
+          <input
+            required
+            value={form.persona_id?"PRESTADO":"BIBLIOTECA"}
+            name="nombre"
+            type="text"
+            className="form-control"
+            id="exampleInputEmail1"
+            disabled={true}
+          />
+        </div>
         <div className="d-flex justify-content-center">
           <Link className="btn btn-secondary m-3" to={"/"}>
             Cancelar
           </Link>
-          <button type="submit" className="btn btn-primary m-3">
+          <button type="submit" className="btn btn-primary m-3 btn-agregar">
           Aceptar
         </button>
         </div>
