@@ -1,0 +1,16 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500);
+
+
+.texto {
+  font-size: 2em;
+  text-align: center;
+  font-weight: 100;
+  font-family: "Roboto", sans-serif;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 8em;
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+}
