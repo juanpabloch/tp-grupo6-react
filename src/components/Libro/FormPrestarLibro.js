@@ -33,7 +33,11 @@ export default function Formulario(props) {
           `https://tp-grupo6-api.herokuapp.com/libro/prestar/${id}`,
           form 
         );
-        dispatch({ type: "PRESTAR_LIBRO", payload1: id , payload2:form.persona_id });
+        dispatch({ type: "PRESTAR_LIBRO", payload:{
+          persona: form.persona_id,
+          id: id
+        },  });
+        
         props.history.push({
         pathname:"/",exito:`El libro se ha prestado correctamente`});
     } catch (error) {
