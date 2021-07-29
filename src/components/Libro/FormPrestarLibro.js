@@ -4,9 +4,8 @@ import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Formulario(props) {
-  const { id,nombre, persona } = useParams();
-  const personas = useSelector((state) => state.personas.listado);
-
+ const personas = useSelector((state) => state.personas.listado);
+  const { id,nombre } = useParams();
 
 
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ export default function Formulario(props) {
   const [alerta, setAlerta] = useState({mostrar:false,msg:""});
 
   const [form, setForm] = useState({
-    persona_id: persona === "null" ? null : persona,
+    persona_id: 0
   });
 
   const opcionesPers = () => {
@@ -34,11 +33,7 @@ export default function Formulario(props) {
           `https://tp-grupo6-api.herokuapp.com/libro/prestar/${id}`,
           form 
         );
-
-        dispatch({
-          type: "PRESTAR_LIBRO",
-          payload: [id,form.persona_id],
-        });
+        dispatch({ type: "PRESTAR_LIBRO", payload1: id , payload2:form.persona_id });
         props.history.push({
         pathname:"/",exito:`El libro se ha prestado correctamente`});
     } catch (error) {
