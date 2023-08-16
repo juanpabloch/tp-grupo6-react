@@ -24,27 +24,28 @@ import FormularioNuevaCategoria from "./Categorias/FormularioNuevaCategoria";
 import ModificarCategoria from "./Categorias/Modificar";
 
 import NotFound from "./NotFound/NotFound";
+
 const App = () => {
   const dispatch = useDispatch();
 
   const [alerta, setAlerta] = useState({ mostrar: false, msg: "" });
-
+  const url = "https://tp-grupo6-ivorkokg3-juanpabloch.vercel.app"
   useEffect(() => {
     const fetchAll = async () => {
       try {
         let respuesta = await axios.get(
-          "https://tp-grupo6-api.herokuapp.com/libro"
+          url + "/libro"
         );
         dispatch({ type: "AGREGAR_LISTADO_LIBROS", listado: respuesta.data });
         respuesta = await axios.get(
-          "https://tp-grupo6-api.herokuapp.com/categoria"
+          url + "/categoria"
         );
         dispatch({
           type: "AGREGAR_LISTADO_CATEGORIA",
           listado: respuesta.data,
         });
         respuesta = await axios.get(
-          "https://tp-grupo6-api.herokuapp.com/persona"
+          url + "/persona"
         );
         dispatch({ type: "AGREGAR_LISTADO_PERSONA", listado: respuesta.data });
       } catch (error) {
@@ -61,16 +62,16 @@ const App = () => {
     <div className="bg">
       <div className="container">
         {alerta.mostrar ? (
-          <div class="row h-100">
-          <div class="col-sm-12 my-auto ">
+          <div className="row h-100">
+          <div className="col-sm-12 my-auto ">
             <div className="d-flex justify-content-center">
-          <div class="alert alert-danger p-3 " role="alert">
-              <h2 class="alert-heading">
+          <div className="alert alert-danger p-3 " role="alert">
+              <h2 className="alert-heading">
                 <strong>Error! </strong>
               </h2>
               <p>{alerta.msg}</p>
               <hr/>
-              <p class="mb-0">Por favor Recargue la pagina.</p>
+              <p className="mb-0">Por favor Recargue la pagina.</p>
               </div>
             </div>
           </div>
