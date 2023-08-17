@@ -29,29 +29,38 @@ const App = () => {
   const dispatch = useDispatch();
 
   const [alerta, setAlerta] = useState({ mostrar: false, msg: "" });
-  const url = "https://tp-grupo6-ivorkokg3-juanpabloch.vercel.app"
+  const url = "https://tp-grupo6-api.vercel.app"
   useEffect(() => {
     const fetchAll = async () => {
       try {
         let respuesta = await axios.get(
           url + "/libro"
         );
-        dispatch({ type: "AGREGAR_LISTADO_LIBROS", listado: respuesta.data });
+        dispatch({ 
+          type: "AGREGAR_LISTADO_LIBROS", 
+          listado: respuesta.data 
+        });
+
         respuesta = await axios.get(
           url + "/categoria"
         );
         dispatch({
           type: "AGREGAR_LISTADO_CATEGORIA",
-          listado: respuesta.data,
+          listado: respuesta.data
         });
+
         respuesta = await axios.get(
           url + "/persona"
         );
-        dispatch({ type: "AGREGAR_LISTADO_PERSONA", listado: respuesta.data });
+        dispatch({ 
+          type: "AGREGAR_LISTADO_PERSONA", 
+          listado: respuesta.data
+        });
       } catch (error) {
         const newState = JSON.parse(JSON.stringify(alerta));
         newState.mostrar = true;
-        newState.msg = error.response.data.mensaje;
+        // newState.msg = error.response.data.mensaje;
+        newState.msg = error;
         setAlerta(newState);
       }
     };

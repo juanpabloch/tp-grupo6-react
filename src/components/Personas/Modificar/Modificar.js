@@ -73,9 +73,10 @@ export default function Formulario(props) {
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
+    const url = "https://tp-grupo6-api.vercel.app"
     try {
       const serverResponse = await axios.put(
-        `https://tp-grupo6-api.herokuapp.com/persona/${form.persona_id}`,
+        `${url}/persona/${form.persona_id}`,
         form
       );
       dispatch({ type: "MODIFICAR_PERSONA", payload: serverResponse.data });
@@ -84,7 +85,8 @@ export default function Formulario(props) {
     } catch (error) {
       const newState = JSON.parse(JSON.stringify(alerta));
       newState.mostrar = true;
-      newState.msg = error.response.data.mensaje;
+      // newState.msg = error.response.data.mensaje;
+      newState.msg = error;
       setAlerta(newState);
     }
   };

@@ -15,9 +15,9 @@ function reducerPersonas(state = estadoInicial, action) {
         return nuevoState;
         case 'MODIFICAR_PERSONA':
           const  index = nuevoState.listado.findIndex(
-            (obj) => obj.persona_id === action.payload[0].persona_id
+            (obj) => obj.persona_id === action.payload.persona_id
           );
-           nuevoState.listado[index] = action.payload[0];
+           nuevoState.listado[index] = action.payload;
            return nuevoState;
       default:
         return state;

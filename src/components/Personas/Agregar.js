@@ -75,8 +75,9 @@ const AgregarPersona = (props) => {
   //on Submit
   const onFormSubmit = async (e) => {
     e.preventDefault();
+    const url = "https://tp-grupo6-api.vercel.app"
     try {
-      const response = await axios.post("https://tp-grupo6-api.herokuapp.com/persona", {
+      const response = await axios.post(url + "/persona", {
         nombre: persona.nombre,
         apellido: persona.apellido,
         email: persona.email,

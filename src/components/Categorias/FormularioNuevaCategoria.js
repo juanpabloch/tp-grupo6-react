@@ -3,6 +3,9 @@ import axios from "axios";
 import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom"
+
+const url = "https://tp-grupo6-api.vercel.app"
+
 const Agregar = (props) => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
@@ -55,7 +58,7 @@ const Agregar = (props) => {
   const createCategoria = async (categoria) => {
     try {
       const response = await axios.post(
-        "https://tp-grupo6-api.herokuapp.com/categoria",
+        url + "/categoria",
         {
           nombre: categoria,
         }
@@ -63,7 +66,7 @@ const Agregar = (props) => {
 
       dispatch({
         type: "AGREGAR_UNA_CATEGORIA",
-        payload: response.data[0],
+        payload: response.data,
       });
       props.history.push({
         pathname:"/categorias",exito:`Has agregado con exito la categoria : ${value}`});

@@ -15,9 +15,9 @@ function reducerCategorias(state = estadoInicial,action) {
           return nuevoState
       case "MODIFICAR_CATEGORIA":
         const  index = nuevoState.listado.findIndex(
-                (obj) => obj.categoria_id === parseInt(action.payload[0])
+                (obj) => obj.categoria_id === parseInt(action.payload)
               );
-              nuevoState.listado[index].nombre = action.payload[1];
+              nuevoState.listado[index].nombre = action.payload;
               return nuevoState;
       default:
         return state;

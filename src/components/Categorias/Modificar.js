@@ -55,9 +55,10 @@ export default function Formulario(props) {
   };
 
   const onFormSubmit = async (e) => {
+    const url = "https://tp-grupo6-api.vercel.app"
     e.preventDefault();
     try {
-      await axios.put(  `https://tp-grupo6-api.herokuapp.com/categoria/${id}`, form);
+      await axios.put(  `${url}/categoria/${id}`, form);
       dispatch({ type: "MODIFICAR_CATEGORIA", payload: [parseInt(id),form.nombre] });
       props.history.push({
         pathname:"/categorias",exito:`Has modificado con exito la categoria a ${form.nombre}`});

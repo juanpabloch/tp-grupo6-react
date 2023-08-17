@@ -22,8 +22,9 @@ export default function Libros(props) {
 
   const categorias = useSelector((state) => state.categorias.listado);
 
-
   const CANTIDAD_LIBROS_PAGINAS = 3;
+
+  console.log(listado)
 
   const handleCerrar = () => {
     setAlerta(false);
@@ -108,14 +109,10 @@ export default function Libros(props) {
         <Paginacion
           atras={!pagActual > 0}
           adelante={
-            !(buscarGenero===""?listado.filter((libro) => libro.nombre.includes(buscarPor))
-            .length >
-          pagActual + CANTIDAD_LIBROS_PAGINAS:
-              listado.filter((libro) =>libro.categoria_id === (parseInt(buscarGenero)))
-                .length >
-              pagActual + CANTIDAD_LIBROS_PAGINAS && listado.filter((libro) => libro.nombre.includes(buscarPor))
-              .length >
-            pagActual + CANTIDAD_LIBROS_PAGINAS
+            !(buscarGenero===""
+                ? listado.filter((libro) => libro.nombre.includes(buscarPor)).length > pagActual + CANTIDAD_LIBROS_PAGINAS
+                : listado.filter((libro) => libro.categoria_id === (parseInt(buscarGenero))).length > pagActual + CANTIDAD_LIBROS_PAGINAS 
+                && listado.filter((libro) => libro.nombre.includes(buscarPor)).length > pagActual + CANTIDAD_LIBROS_PAGINAS
             )
           }
           botonAdelante={botonAdelante}

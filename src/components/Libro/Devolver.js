@@ -8,10 +8,10 @@ export default function Devolver({id,disable,setAlerta,alerta}) {
 
 
     const handleDevolverLibro = async (Id) => {
-
+        const url = "https://tp-grupo6-api.vercel.app"  
         try {
           await axios.put(
-            `https://tp-grupo6-api.herokuapp.com/libro/devolver/${Id}`
+            `${url}/libro/devolver/${Id}`
           );
           dispatch({ type: "DEVOLVER_LIBRO", payload: Id });
           const newState = JSON.parse(JSON.stringify(alerta));

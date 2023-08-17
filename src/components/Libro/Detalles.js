@@ -12,14 +12,17 @@ const Detalle = ()=>{
     const [alerta, setAlerta] = useState({msg:"",mostrar:false,tipo:0})
     useEffect(()=>{
         const fetchData = async()=>{
+            const url = "https://tp-grupo6-api.vercel.app"
             try{
-            const response = await axios.get(`https://tp-grupo6-api.herokuapp.com/libro/${id}`)
-            setLibro(response.data[0])
-            const categoria = await axios.get(`https://tp-grupo6-api.herokuapp.com/categoria/${response.data[0].categoria_id}`)
-            setCategoria(categoria.data[0].nombre)
-        } catch (error) {
-            console.log(error.response.data);
-          }
+                const response = await axios.get(`${url}/libro/${id}`)
+                setLibro(response.data)
+                
+                const categoria = await axios.get(`${url}/categoria/${response.data.categoria_id}`)
+                setCategoria(categoria.data.nombre)
+            } catch (error) {
+                // console.log(error.response.data);
+                console.log(error);
+            }
         };
         fetchData()
     }, [])

@@ -28,8 +28,9 @@ export default function Formulario(props) {
 
   useEffect(()=>{
     const fetchData = async()=>{
+      const url = "https://tp-grupo6-api.vercel.app"
       try{
-        const categoria = await axios.get(`https://tp-grupo6-api.herokuapp.com/categoria/${form.categoria_id}`)
+        const categoria = await axios.get(`${url}/categoria/${form.categoria_id}`)
         setCategoria(categoria.data[0].nombre)
       } catch (error) {
         const newState = JSON.parse(JSON.stringify(alerta));
@@ -66,9 +67,10 @@ export default function Formulario(props) {
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
+    const url = "https://tp-grupo6-api.vercel.app"
     try {
       const serverResponse = await axios.put(
-        `https://tp-grupo6-api.herokuapp.com/libro/${form.libro_id}`,
+        `${url}/libro/${form.libro_id}`,
         form
       );
       dispatch({ type: "MODIFICAR_DESCRIPCION", payload: serverResponse.data });

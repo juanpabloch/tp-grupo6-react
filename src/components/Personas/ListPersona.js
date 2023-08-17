@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from "react-router-dom";
 export default function ListPersonas({ personas }) {
-
+  console.log(personas)
   return (
     <div className="row">
       {personas.map((persona) => (

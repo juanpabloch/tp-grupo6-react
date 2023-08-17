@@ -76,10 +76,11 @@ const LibroForm = (props) => {
   //on Submit
   const onFormSubmit = async (e) => {
     e.preventDefault();
+    const url = "https://tp-grupo6-api.vercel.app"
     try {
       const persona = e.target.elements.persona.value;
       const response = await axios
-        .post("https://tp-grupo6-api.herokuapp.com/libro", {
+        .post(url + "/libro", {
           nombre: dataFormulario.nombre,
           descripcion: dataFormulario.descripcion,
           categoria_id: dataFormulario.categoria,
@@ -88,14 +89,15 @@ const LibroForm = (props) => {
 
         dispatch({
           type: "AGREGAR_LIBRO",
-          payload: response.data[0],
+          payload: response.data,
         });
         props.history.push({
           pathname:"/",exito:`Has agregado con exito el libro ${dataFormulario.nombre}`});
     } catch (error) {
       const newState = JSON.parse(JSON.stringify(alerta));
       newState.mostrar = true;
-      newState.msg = error.response.data.mensaje;
+      // newState.msg = error.response.data.mensaje;
+      newState.msg = error;
       setAlerta(newState);
     }
   };

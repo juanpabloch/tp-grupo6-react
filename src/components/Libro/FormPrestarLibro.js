@@ -28,9 +28,10 @@ export default function Formulario(props) {
   //on Submit
   const onFormSubmit = async (e) => {
     e.preventDefault();
+    const url = "https://tp-grupo6-api.vercel.app"
     try {
           await axios.put(
-          `https://tp-grupo6-api.herokuapp.com/libro/prestar/${id}`,
+          `${url}/libro/prestar/${id}`,
           form 
         );
         dispatch({ type: "PRESTAR_LIBRO", payload:{

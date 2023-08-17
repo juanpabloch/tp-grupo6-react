@@ -4,12 +4,13 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+const url = "https://tp-grupo6-api.vercel.app"
 
 const VALORES = {
-    "persona": ["https://tp-grupo6-api.herokuapp.com/persona/","REMOVER_PERSONA","/personas"],
-    "libro": ["https://tp-grupo6-api.herokuapp.com/libro/","REMOVER_LIBRO","/"],
-    "categoria": ["https://tp-grupo6-api.herokuapp.com/categoria/","REMOVER_CATEGORIA","/categorias"],
-  };
+    "persona": [url + "/persona/","REMOVER_PERSONA","/personas"],
+    "libro": [url + "/libro/","REMOVER_LIBRO","/"],
+    "categoria": [url + "/categoria/","REMOVER_CATEGORIA","/categorias"],
+};
 
 
 export default function BorrarLibro(props) {
