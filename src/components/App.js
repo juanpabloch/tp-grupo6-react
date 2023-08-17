@@ -65,7 +65,7 @@ const App = () => {
       }
     };
     fetchAll();
-  }, []);
+  }, [alerta, dispatch]);
 
   return (
     <div className="bg">

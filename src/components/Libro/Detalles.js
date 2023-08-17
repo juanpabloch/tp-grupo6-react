@@ -25,7 +25,7 @@ const Detalle = ()=>{
             }
         };
         fetchData()
-    }, [])
+    }, [id])
 
     const handleCerrar = (e) => {
         const newForm = JSON.parse(JSON.stringify(alerta));

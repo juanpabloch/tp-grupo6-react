@@ -40,7 +40,7 @@ export default function Formulario(props) {
       }
     }
     fetchData()
-}, [])
+}, [alerta, form.categoria_id])
 
   const handleDescripcion = (e) => {
     const newForm = JSON.parse(JSON.stringify(form));

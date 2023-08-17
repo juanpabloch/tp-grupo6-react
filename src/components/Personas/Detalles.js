@@ -13,7 +13,7 @@ const Detalle = () => {
   });
   useEffect(() => {
     setLibrosPrestados(LibrosToMostar.join());
-  }, []);
+  }, [LibrosToMostar]);
   return (
     <div className="container p-5">
       <div className="card">
